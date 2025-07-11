@@ -1,10 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import ImageGrid from "../Libraries/ImageGrid";
 import ImageColumn from "../Libraries/ImageColumn";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { checkAuthAndRedirect } = useAuth();
+
+  const handleTryItNow = async () => {
+    await checkAuthAndRedirect('/home');
+  };
 
   return (
     <div id="home" className="py-12 mt-10 md:mt-20">
@@ -29,7 +35,7 @@ const Home = () => {
               <div className="inline-block rounded-[12px] bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-[1.5px] w-full md:w-fit">
                 <button
                   className="bg-black text-white px-6 py-3 rounded-[11px] flex items-center gap-2 justify-center hover:bg-[#181818] transition-all w-full md:w-fit"
-                  onClick={() => navigate("/login")}
+                  onClick={handleTryItNow}
                 >
                   <p className="leading-2 text-lg">Try it out for free</p>
                   <ArrowUpRight size={24} strokeWidth={1.4} />

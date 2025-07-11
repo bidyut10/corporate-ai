@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { User, Mail, KeyRound, Check, Eye, EyeOff } from "lucide-react";
-import { registerUser } from "../../apis/authService";
 import { useSignupValidation } from "../../hooks/useFormValidation";
+import { useAuth } from "../../contexts/AuthContext";
 import PropTypes from "prop-types";
 
 const SignupForm = ({
@@ -10,6 +10,7 @@ const SignupForm = ({
   onNotification,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const { signup } = useAuth();
 
   const {
     name,
@@ -43,7 +44,7 @@ const SignupForm = ({
         password,
       };
 
-      const result = await registerUser(userData);
+      const result = await signup(userData);
 
       setIsSubmitting(false);
 
@@ -55,10 +56,6 @@ const SignupForm = ({
         toggleForm();
       } else {
         setErrors({ submit: result.message });
-        onNotification({
-          type: "error",
-          message: result.message,
-        });
       }
     }
   };
@@ -210,7 +207,7 @@ const SignupForm = ({
 
 SignupForm.propTypes = {
   toggleForm: PropTypes.func.isRequired,
-  onNotification: PropTypes.func.isRequired
+  onNotification: PropTypes.func.isRequired,
 };
 
 export default SignupForm;

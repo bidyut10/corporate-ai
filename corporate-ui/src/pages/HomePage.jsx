@@ -1,7 +1,7 @@
 import Navbar from '../components/Home/Navbar';
 import Home from '../components/Home/Home';
 import Testimonials from '../components/Home/Testimonial';
-import Footer from "../components/Home/Footer";
+import Footer from '../components/Home/Footer';
 import HowItWorks from '../components/Home/HowItWorks';
 import KeyFeatures from '../components/Home/KeyFeatures';
 

@@ -1,0 +1,33 @@
+/*
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /*.json$
+Disallow: /search?
+Disallow: /404
+Disallow: /500
+
+# Sitemap
+Sitemap: https://corporateai.in/sitemap.xml
+Sitemap: https://corporateai.in/login-sitemap.xml
+Sitemap: https://corporateai.in/home-sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+*/

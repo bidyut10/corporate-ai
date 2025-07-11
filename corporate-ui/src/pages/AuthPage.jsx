@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MousePointerClick } from "lucide-react";
 import LoginForm from "../components/Login/LoginForm";
 import SignupForm from "../components/Login/SignupForm";
 import Notification from "../components/Libraries/Notification";
+import Logo from "../components/Libraries/Logo";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -53,10 +53,7 @@ const AuthPage = () => {
           <div className="sm:mx-auto sm:w-full sm:max-w-md mb-4">
             <Link to="/" className="flex items-center justify-center gap-2">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#000000] rounded-xl flex items-center justify-center shadow-md">
-                <MousePointerClick
-                  className="w-5 h-5 sm:w-6 sm:h-6 text-[#ffffff]"
-                  strokeWidth={1}
-                />
+                <Logo />
               </div>
             </Link>
             <h2 className="mt-4 text-center text-lg font-normal text-gray-950">

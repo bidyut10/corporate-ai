@@ -142,8 +142,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="bg-[#0f0f0f] flex justify-center items-center  px-4 py-6 w-full">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white w-full max-w-7xl">
+        <div className="bg-[#0f0f0f] flex justify-center items-center py-6 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white w-full max-w-7xl px-4">
             <div>
               &copy; {new Date().getFullYear()} Corporate AI. All rights
               reserved.
