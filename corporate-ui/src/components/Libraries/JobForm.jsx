@@ -14,7 +14,7 @@ import {
 import { createJob, updateJob } from "../../apis/jobService";
 import PropTypes from "prop-types";
 
-const JobForm = ({ isOpen, onClose, job = null, onSuccess }) => {
+const JobForm = ({ job = null, onSuccess }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -127,7 +127,6 @@ const JobForm = ({ isOpen, onClose, job = null, onSuccess }) => {
 
       if (result.success) {
         onSuccess();
-        onClose();
         setFormData({
           title: "",
           description: "",
@@ -148,32 +147,16 @@ const JobForm = ({ isOpen, onClose, job = null, onSuccess }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h3 className="text-xl font-semibold text-black flex items-center gap-2">
-            <Briefcase className="w-5 h-5" />
-            {job ? "Edit Job" : "Create New Job"}
-          </h3>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="p-6 space-y-6 text-sm md:text-base"
-        >
+    <div className="bg-white/90 rounded-2xl shadow-lg border border-gray-100 p-8 max-w-3xl mx-auto mb-8">
+      <h3 className="text-2xl font-bold text-black flex items-center gap-2 mb-6">
+        <Briefcase className="w-6 h-6" />
+        {job ? "Edit Job" : "Create New Job"}
+      </h3>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 text-sm md:text-base"
+      >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
@@ -334,35 +317,23 @@ const JobForm = ({ isOpen, onClose, job = null, onSuccess }) => {
             </select>
           </div>
 
-          <div className="flex items-center justify-end space-x-3 pt-6 border-t border-gray-100">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-6 py-3 text-gray-600 hover:text-black transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex items-center space-x-2 px-6 py-3 bg-purple-400 hover:bg-purple-500 text-white rounded-xl transition-colors disabled:opacity-50"
-            >
-              {loading ? (
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  {job ? (
-                    <Save className="w-4 h-4" />
-                  ) : (
-                    <Plus className="w-4 h-4" />
-                  )}
-                  <span>{job ? "Update Job" : "Create Job"}</span>
-                </>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="flex justify-end gap-4 mt-8">
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex items-center space-x-2 bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-xl transition-colors shadow-sm hover:shadow-md font-medium disabled:opacity-60"
+          >
+            {loading ? (
+              <span>Saving...</span>
+            ) : (
+              <>
+                <Save className="w-5 h-5" />
+                <span>{job ? "Update Job" : "Create Job"}</span>
+              </>
+            )}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -45,10 +45,10 @@ export const getAllJobs = async (params = {}) => {
 export const getJobById = async (jobId) => {
     try {
         const response = await apiClient.get(`/jobs/${jobId}`);
-        return { success: response.data.status, data: response.data.data, message: response.data.message };
+        return { status: response.data.status, data: response.data.data, message: response.data.message };
     } catch (error) {
         const message = error.response?.data?.message || "Failed to fetch job";
-        return { success: false, message };
+        return { status: false, message };
     }
 };
 
@@ -118,6 +118,41 @@ export const getApplications = async (params = {}) => {
     }
 };
 
+// Application API functions
+export const createApplication = async (formData) => {
+    try {
+        const response = await apiClient.post("/applications", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+        return { status: response.data.status, data: response.data.data, message: response.data.message };
+    } catch (error) {
+        const message = error.response?.data?.message || "Failed to submit application";
+        return { status: false, message };
+    }
+};
+
+export const getApplicationsByJob = async (jobId) => {
+    try {
+        const response = await apiClient.get(`/applications/job/${jobId}`);
+        return { status: response.data.status, data: response.data.data, message: response.data.message };
+    } catch (error) {
+        const message = error.response?.data?.message || "Failed to fetch applications";
+        return { status: false, message };
+    }
+};
+
+export const getApplicationById = async (applicationId) => {
+    try {
+        const response = await apiClient.get(`/applications/${applicationId}`);
+        return { status: response.data.status, data: response.data.data, message: response.data.message };
+    } catch (error) {
+        const message = error.response?.data?.message || "Failed to fetch application";
+        return { status: false, message };
+    }
+};
+
 // Default export
 const jobService = {
     getJobStats,
@@ -128,7 +163,10 @@ const jobService = {
     updateJob,
     deleteJob,
     toggleJobStatus,
-    getApplications
+    getApplications,
+    createApplication,
+    getApplicationsByJob,
+    getApplicationById
 };
 
 export default jobService; 

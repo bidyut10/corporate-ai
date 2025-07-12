@@ -1,7 +1,7 @@
-import { Edit, Trash2, Eye, MoreHorizontal } from "lucide-react";
+import { Edit, Trash2, Eye, MoreHorizontal, Users } from "lucide-react";
 import PropTypes from "prop-types";
 
-const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange }) => {
+const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplications }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "active":
@@ -94,6 +94,13 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange }) => {
                       <Eye className="w-4 h-4" />
                     </button>
                     <button
+                      onClick={() => onApplications(job)}
+                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-all"
+                      title="View Applications"
+                    >
+                      <Users className="w-4 h-4" />
+                    </button>
+                    <button
                       onClick={() => onEdit(job)}
                       className="p-2 text-gray-400 hover:text-purple-400 hover:bg-purple-400/10 rounded-lg transition-all"
                       title="Edit"
@@ -143,6 +150,7 @@ JobsTable.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onView: PropTypes.func.isRequired,
   onStatusChange: PropTypes.func.isRequired,
+  onApplications: PropTypes.func.isRequired,
 };
 
 export default JobsTable; 

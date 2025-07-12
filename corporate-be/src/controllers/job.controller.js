@@ -1,4 +1,5 @@
 import { Job } from "../models/job.model.js";
+import { Application } from "../models/application.model.js";
 
 // Create a new job
 const createJob = async (req, res) => {
@@ -221,6 +222,8 @@ const getMyJobs = async (req, res) => {
       message: "Jobs fetched successfully"
     });
   } catch (error) {
+    console.log(error);
+    
     return res.status(500).json({ status: false, message: "Internal server error" });
   }
 };

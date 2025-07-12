@@ -8,10 +8,18 @@
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
     "start": "node src/index.js"
   },
-  "keywords": ["nodejs", "express", "mongodb", "authentication", "job-management", "resume-upload"],
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "authentication",
+    "job-management",
+    "resume-upload"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.0",
     "cookie-parser": "^1.4.6",

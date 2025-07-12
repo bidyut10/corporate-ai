@@ -21,6 +21,9 @@ export const config = {
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   
+  // Gemini AI Configuration
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+  
   // CORS Configuration
   CORS_ORIGIN: process.env.CORS_ORIGIN || "http://localhost:3000",
   

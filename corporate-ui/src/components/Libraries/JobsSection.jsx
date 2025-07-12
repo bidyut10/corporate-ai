@@ -8,6 +8,7 @@ const JobsSection = ({
   onEdit, 
   onDelete, 
   onView, 
+  onApplications,
   onStatusChange, 
   onCreateJob,
   onSearch,
@@ -21,13 +22,6 @@ const JobsSection = ({
           <h2 className="text-2xl font-bold text-black">Jobs</h2>
           <p className="text-gray-600">Manage your job postings</p>
         </div>
-        {/* <button
-          onClick={onCreateJob}
-          className="inline-flex items-center space-x-2 bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-xl transition-colors shadow-sm hover:shadow-md"
-        >
-          <Plus className="w-5 h-5" />
-          <span className="font-medium">Create Job</span>
-        </button> */}
         <div className="inline-block rounded-[10px]  p-[1.5px]">
           <button
             className="text-sm w-full text-white bg-black px-4 pt-2 pb-2.5 rounded-[9px] hover:bg-[#181818] transition-all font-normal truncate text-pretty"
@@ -83,6 +77,7 @@ const JobsSection = ({
         onEdit={onEdit}
         onDelete={onDelete}
         onView={onView}
+        onApplications={onApplications}
         onStatusChange={onStatusChange}
       />
     </div>
@@ -94,6 +89,7 @@ JobsSection.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onView: PropTypes.func.isRequired,
+  onApplications: PropTypes.func.isRequired,
   onStatusChange: PropTypes.func.isRequired,
   onCreateJob: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,

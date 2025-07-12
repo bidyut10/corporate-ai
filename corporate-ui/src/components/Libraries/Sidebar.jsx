@@ -18,11 +18,6 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
       icon: Briefcase,
     },
     {
-      id: "applications",
-      label: "Applications",
-      icon: Users,
-    },
-    {
       id: "settings",
       label: "Settings",
       icon: Settings,
