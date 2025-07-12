@@ -28,7 +28,7 @@ const ProfilePopup = ({ isOpen, onClose, name, email, role }) => {
       : "User";
 
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm">
       <div className="fixed" onClick={onClose} />
       <div className="fixed top-16 right-4 z-60 w-80 max-w-[calc(100vw-2rem)]">
         <div className="bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden">

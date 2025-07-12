@@ -148,7 +148,7 @@ const JobForm = ({ job = null, onSuccess }) => {
   };
 
   return (
-    <div className="bg-white/90 rounded-2xl shadow-lg border border-gray-100 p-8 max-w-3xl mx-auto mb-8">
+    <div className="bg-white/90 h-[90%] rounded-2xl shadow-lg border border-gray-100 p-8 max-w-3xl mx-auto mb-8">
       <h3 className="text-2xl font-bold text-black flex items-center gap-2 mb-6">
         <Briefcase className="w-6 h-6" />
         {job ? "Edit Job" : "Create New Job"}

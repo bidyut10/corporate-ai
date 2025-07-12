@@ -143,6 +143,16 @@ export const getApplicationsByJob = async (jobId) => {
     }
 };
 
+export const getAllApplications = async (params = {}) => {
+    try {
+        const response = await apiClient.get("/applications/all", { params });
+        return { status: response.data.status, data: response.data.data, message: response.data.message };
+    } catch (error) {
+        const message = error.response?.data?.message || "Failed to fetch all applications";
+        return { status: false, message };
+    }
+};
+
 export const getApplicationById = async (applicationId) => {
     try {
         const response = await apiClient.get(`/applications/${applicationId}`);
@@ -166,6 +176,7 @@ const jobService = {
     getApplications,
     createApplication,
     getApplicationsByJob,
+    getAllApplications,
     getApplicationById
 };
 

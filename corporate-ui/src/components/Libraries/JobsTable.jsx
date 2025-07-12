@@ -28,30 +28,30 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
   };
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+    <div className="bg-white/80 font-normal backdrop-blur-sm rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-100">
-          <thead className="bg-gray-50/50">
+          <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Job Title
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Location
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Type
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Salary
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Status
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Created
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -61,8 +61,7 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
               <tr key={job._id} className="hover:bg-gray-50/50 transition-colors">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div>
-                    <div className="text-sm font-semibold text-black">{job.title}</div>
-                    <div className="text-xs text-gray-500 font-mono">{job.jobId}</div>
+                    <div className="text-sm font-medium text-gray-800">{job.title}</div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -88,28 +87,28 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => onView(job)}
-                      className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all"
+                      className="p-2 text-gray-800 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
                       title="View"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => onApplications(job)}
-                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-all"
+                      className="p-2 text-gray-800 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-all"
                       title="View Applications"
                     >
                       <Users className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => onEdit(job)}
-                      className="p-2 text-gray-400 hover:text-purple-400 hover:bg-purple-400/10 rounded-lg transition-all"
+                      className="p-2 text-gray-800 hover:text-purple-400 hover:bg-purple-400/10 rounded-lg transition-all"
                       title="Edit"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => onDelete(job)}
-                      className="p-2 text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
+                      className="p-2 text-gray-800 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
                       title="Delete"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -121,7 +120,6 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
                     >
                       <option value="active">Active</option>
                       <option value="inactive">Inactive</option>
-                      <option value="closed">Closed</option>
                     </select>
                   </div>
                 </td>
@@ -134,7 +132,7 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
       {jobs.length === 0 && (
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <MoreHorizontal className="w-8 h-8 text-gray-400" />
+            <MoreHorizontal className="w-8 h-8 text-gray-800" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
           <p className="text-gray-500">Get started by creating your first job posting.</p>

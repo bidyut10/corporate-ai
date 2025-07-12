@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Bell, User, UserRound } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-import { getJobStats, getAllJobs, getMyJobs, deleteJob, toggleJobStatus, getApplicationsByJob } from "../apis/jobService";
+import { getJobStats, getAllJobs, getMyJobs, deleteJob, toggleJobStatus, getApplicationsByJob, getAllApplications } from "../apis/jobService";
 import Sidebar from "../components/Libraries/Sidebar";
 import OverviewSection from "../components/Libraries/OverviewSection";
 import JobsSection from "../components/Libraries/JobsSection";
@@ -26,10 +26,13 @@ const MainPage = () => {
   });
   const [jobs, setJobs] = useState([]);
   const [applications, setApplications] = useState([]);
+  const [allApplications, setAllApplications] = useState([]);
   const [loadingJobs, setLoadingJobs] = useState(false);
   const [loadingApplications, setLoadingApplications] = useState(false);
+  const [loadingAllApplications, setLoadingAllApplications] = useState(false);
   const [errorJobs, setErrorJobs] = useState("");
   const [errorApplications, setErrorApplications] = useState("");
+  const [errorAllApplications, setErrorAllApplications] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({});
 
@@ -37,6 +40,7 @@ const MainPage = () => {
   useEffect(() => {
     fetchJobStats();
     fetchJobs();
+    fetchAllApplications();
   }, []);
 
   const fetchJobStats = async () => {
@@ -65,6 +69,24 @@ const MainPage = () => {
       console.error("Error fetching jobs:", error);
     } finally {
       setLoadingJobs(false);
+    }
+  };
+
+  const fetchAllApplications = async () => {
+    setLoadingAllApplications(true);
+    setErrorAllApplications("");
+    try {
+      const response = await getAllApplications({ limit: 50 });
+      if (response.status) {
+        setAllApplications(response.data || []);
+      } else {
+        setErrorAllApplications(response.message || "Failed to fetch all applications");
+      }
+    } catch (error) {
+      setErrorAllApplications("Error fetching all applications");
+      console.error("Error fetching all applications:", error);
+    } finally {
+      setLoadingAllApplications(false);
     }
   };
 
@@ -167,11 +189,14 @@ const MainPage = () => {
             jobs={jobs}
             loadingJobs={loadingJobs}
             errorJobs={errorJobs}
+            allApplications={allApplications}
+            loadingAllApplications={loadingAllApplications}
+            errorAllApplications={errorAllApplications}
           />
         );
       case "jobs":
         return (
-          <div className="space-y-8 max-w-5xl mx-auto">
+          <div className="mx-auto">
             <JobsSection
               jobs={jobs}
               loading={loadingJobs}
@@ -220,17 +245,21 @@ const MainPage = () => {
         );
       case "applications":
         return (
-          <div className="space-y-8 max-w-5xl mx-auto">
+          <div className="mx-auto">
             {selectedJobForApplications && (
-              <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900">{selectedJobForApplications.title}</h2>
-                    <p className="text-gray-600">{selectedJobForApplications.location}</p>
+                    <h2 className="text-xl font-bold text-gray-900">
+                      {selectedJobForApplications.title}
+                    </h2>
+                    <p className="text-gray-600">
+                      {selectedJobForApplications.location}
+                    </p>
                   </div>
                   <button
                     onClick={() => setActiveSection("jobs")}
-                    className="text-gray-500 hover:text-gray-700"
+                    className="text-sm text-white bg-black px-4 pt-2 pb-2.5 rounded-[9px] hover:bg-[#181818] transition-all font-normal truncate text-pretty"
                   >
                     ← Back to Jobs
                   </button>
@@ -270,15 +299,16 @@ const MainPage = () => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
           {/* Header */}
-          <header className="bg-white">
+          <header className="bg-white shadow-xl shadow-slate-50">
             <div className="flex justify-end items-center h-16 px-6">
               <div className="flex justify-center items-center space-x-6">
                 <Bell className="w-5 h-5 text-black cursor-pointer" />
+            
                 <div
-                  className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 flex items-center justify-center text-white cursor-pointer"
+                  className="w-8 h-8 bg-gradient-to-br from-gray-900 to-slate-950 rounded-full flex items-center justify-center text-white font-medium text-md text-center cursor-pointer"
                   onClick={() => setShowProfilePopup(true)}
                 >
-                  <UserRound size={18} />
+                  {user?.name.charAt(0).toUpperCase() || "U"}
                 </div>
               </div>
             </div>

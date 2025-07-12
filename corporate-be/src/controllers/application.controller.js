@@ -86,6 +86,100 @@ export const getApplicationsByJob = async (req, res) => {
   }
 };
 
+// Get all applications for all jobs of the current user
+export const getAllApplications = async (req, res) => {
+  try {
+    const {
+      status,
+      minScore,
+      maxScore,
+      sortBy = 'appliedAt',
+      sortOrder = 'desc',
+      page = 1,
+      limit = 10,
+      jobId
+    } = req.query;
+
+    // Get all jobs created by the current user
+    const userJobs = await Job.find({ createdBy: req.user._id, isDeleted: false });
+    const userJobIds = userJobs.map(job => job._id);
+
+    if (userJobIds.length === 0) {
+      return res.status(200).json({
+        status: true,
+        data: [],
+        pagination: {
+          currentPage: parseInt(page),
+          totalPages: 0,
+          totalApplications: 0,
+          hasNextPage: false,
+          hasPrevPage: false
+        },
+        summary: {
+          totalApplications: 0,
+          totalJobs: 0
+        }
+      });
+    }
+
+    // Build query filters
+    const filters = { jobId: { $in: userJobIds } };
+
+    if (jobId) {
+      filters.jobId = jobId;
+    }
+
+    if (status) {
+      filters.status = status;
+    }
+
+    if (minScore || maxScore) {
+      filters.aiScore = {};
+      if (minScore) filters.aiScore.$gte = parseInt(minScore);
+      if (maxScore) filters.aiScore.$lte = parseInt(maxScore);
+    }
+
+    // Calculate pagination
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+
+    // Build sort object
+    const sort = {};
+    sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+
+    // Get applications with pagination
+    const applications = await Application.find(filters)
+      .populate('jobId', 'title description experience salary location status')
+      .sort(sort)
+      .skip(skip)
+      .limit(parseInt(limit));
+
+    // Get total count for pagination
+    const totalApplications = await Application.countDocuments(filters);
+
+    return res.status(200).json({
+      status: true,
+      data: applications,
+      pagination: {
+        currentPage: parseInt(page),
+        totalPages: Math.ceil(totalApplications / parseInt(limit)),
+        totalApplications,
+        hasNextPage: skip + applications.length < totalApplications,
+        hasPrevPage: parseInt(page) > 1
+      },
+      summary: {
+        totalApplications,
+        totalJobs: userJobs.length
+      }
+    });
+  } catch (error) {
+    console.error("Get all applications error:", error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal server error"
+    });
+  }
+};
+
 // Get application by ID with full details
 export const getApplicationById = async (req, res) => {
   try {
