@@ -52,6 +52,9 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
                 Created
               </th>
               <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                Applications
+              </th>
+              <th className="px-6 py-4 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -83,6 +86,9 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {formatDate(job.createdAt)}
                 </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                  {job.applicationsCount || 0}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div className="flex items-center space-x-2">
                     <button
@@ -94,8 +100,9 @@ const JobsTable = ({ jobs, onEdit, onDelete, onView, onStatusChange, onApplicati
                     </button>
                     <button
                       onClick={() => onApplications(job)}
-                      className="p-2 text-gray-800 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-all"
+                      className={`p-2 text-gray-800 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-all ${!(job.applicationsCount > 0) ? 'opacity-50 cursor-not-allowed' : ''}`}
                       title="View Applications"
+                      disabled={!(job.applicationsCount > 0)}
                     >
                       <Users className="w-4 h-4" />
                     </button>

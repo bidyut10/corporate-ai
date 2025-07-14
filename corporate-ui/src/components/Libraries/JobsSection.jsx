@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import JobsTable from "./JobsTable";
 import PropTypes from "prop-types";
+import { useState, useMemo } from "react";
 
 const JobsSection = ({ 
   jobs, 
@@ -13,6 +14,26 @@ const JobsSection = ({
   onSearch,
   onFilter 
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filters, setFilters] = useState({ status: "", jobType: "" });
+
+  // Filtering logic
+  const filteredJobs = useMemo(() => {
+    return jobs.filter(job => {
+      // Search
+      const matchesSearch =
+        !searchTerm ||
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (job.description && job.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (job.skills && job.skills.join(", ").toLowerCase().includes(searchTerm.toLowerCase()));
+      // Status filter
+      const matchesStatus = !filters.status || job.status === filters.status;
+      // Type filter
+      const matchesType = !filters.jobType || job.jobType === filters.jobType;
+      return matchesSearch && matchesStatus && matchesType;
+    });
+  }, [jobs, searchTerm, filters]);
+
   return (
     <div className="space-y-6 font-normal">
       {/* Header */}
@@ -36,14 +57,16 @@ const JobsSection = ({
               <input
                 type="text"
                 placeholder="Search jobs by title, description, or skills..."
-                onChange={(e) => onSearch(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 border border-gray-500 rounded-xl focus:border-gray-600"
               />
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <select
-              onChange={(e) => onFilter("status", e.target.value)}
+              value={filters.status}
+              onChange={(e) => setFilters(f => ({ ...f, status: e.target.value }))}
               className="px-4 py-3 border border-gray-500 rounded-xl focus:ring-1 focus:ring-gray-700 focus:border-transparent transition-all"
             >
               <option value="">All Status</option>
@@ -52,7 +75,8 @@ const JobsSection = ({
               <option value="closed">Closed</option>
             </select>
             <select
-              onChange={(e) => onFilter("jobType", e.target.value)}
+              value={filters.jobType}
+              onChange={(e) => setFilters(f => ({ ...f, jobType: e.target.value }))}
               className="px-4 py-3 border border-gray-500 rounded-xl focus:ring-1 focus:ring-gray-700 focus:border-transparent transition-all"
             >
               <option value="">All Types</option>
@@ -68,7 +92,7 @@ const JobsSection = ({
 
       {/* Jobs Table */}
       <JobsTable
-        jobs={jobs}
+        jobs={filteredJobs}
         onEdit={onEdit}
         onDelete={onDelete}
         onView={onView}
@@ -87,8 +111,8 @@ JobsSection.propTypes = {
   onApplications: PropTypes.func.isRequired,
   onStatusChange: PropTypes.func.isRequired,
   onCreateJob: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
-  onFilter: PropTypes.func.isRequired,
+  onSearch: PropTypes.func,
+  onFilter: PropTypes.func,
 };
 
 export default JobsSection; 

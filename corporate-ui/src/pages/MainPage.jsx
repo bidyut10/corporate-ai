@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Bell, User, UserRound } from "lucide-react";
+import { Bell, User, UserRound, X } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { getJobStats, getAllJobs, getMyJobs, deleteJob, toggleJobStatus, getApplicationsByJob, getAllApplications } from "../apis/jobService";
 import Sidebar from "../components/Libraries/Sidebar";
@@ -35,6 +35,8 @@ const MainPage = () => {
   const [errorAllApplications, setErrorAllApplications] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({});
+  const [showJobDetailsModal, setShowJobDetailsModal] = useState(false);
+  const [viewingJob, setViewingJob] = useState(null);
 
   // Fetch initial data
   useEffect(() => {
@@ -133,8 +135,8 @@ const MainPage = () => {
   };
 
   const handleJobView = (job) => {
-    // Handle job view
-    console.log("View job:", job);
+    setViewingJob(job);
+    setShowJobDetailsModal(true);
   };
 
   const handleJobApplications = (job) => {
@@ -317,6 +319,45 @@ const MainPage = () => {
           email={user.email}
           role={user.role}
         />
+
+        {/* Job Details Modal */}
+        {showJobDetailsModal && viewingJob && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+              <button
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500"
+                onClick={() => setShowJobDetailsModal(false)}
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold mb-2">{viewingJob.title}</h2>
+                <div className="mb-4 text-gray-600">{viewingJob.location}</div>
+                <div className="mb-4">
+                  <span className="capitalize px-2 py-1 bg-purple-400/10 text-purple-400 rounded-lg text-xs font-medium mr-2">
+                    {viewingJob.jobType}
+                  </span>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium mr-2">
+                    {viewingJob.status}
+                  </span>
+                  <span className="px-2 py-1 bg-green-100 text-green-700 rounded-lg text-xs font-medium">
+                    {viewingJob.salary && viewingJob.salary.min ? `${viewingJob.salary.currency || 'USD'} ${viewingJob.salary.min.toLocaleString()}${viewingJob.salary.max ? ' - ' + viewingJob.salary.max.toLocaleString() : ''}` : 'Not specified'}
+                  </span>
+                </div>
+                <div className="mb-4">
+                  <strong>Skills:</strong> {viewingJob.skills && viewingJob.skills.length > 0 ? viewingJob.skills.join(", ") : 'N/A'}
+                </div>
+                <div className="mb-4">
+                  <strong>Experience:</strong> {viewingJob.experience ? `${viewingJob.experience.min || 0} - ${viewingJob.experience.max || 0} years` : 'N/A'}
+                </div>
+                <div className="mb-4">
+                  <strong>Applications:</strong> {viewingJob.applicationsCount || 0}
+                </div>
+                <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: viewingJob.description }} />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

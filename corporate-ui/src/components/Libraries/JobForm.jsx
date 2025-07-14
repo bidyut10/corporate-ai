@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   X,
   Save,
+  ScrollText,
 } from "lucide-react";
 import { createJob, updateJob } from "../../apis/jobService";
 import RichTextEditor from "./RichTextEditor";
@@ -28,6 +29,9 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [aiLoading, setAiLoading] = useState(false); // Track AI Assistant loading
+  const aiActionRef = useRef(false); // Track if AI Assistant is updating
+  const [editorKey, setEditorKey] = useState("new");
 
   useEffect(() => {
     if (job) {
@@ -40,6 +44,18 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
         experience: job.experience || { min: 0, max: 10 },
         jobType: job.jobType || "full-time",
       });
+      setEditorKey(job._id || job.jobId || Math.random().toString(36));
+    } else {
+      setFormData({
+        title: "",
+        description: "",
+        location: "",
+        skills: [],
+        salary: { min: "", max: "", currency: "USD" },
+        experience: { min: 0, max: 10 },
+        jobType: "full-time",
+      });
+      setEditorKey("new");
     }
   }, [job]);
 
@@ -80,12 +96,21 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
     }));
   };
 
-  const handleAIGenerate = (description) => {
+  // AI Assistant handlers
+  const handleAIGenerate = async (description) => {
+    aiActionRef.current = true;
+    setAiLoading(true);
     handleInputChange("description", description);
+    setAiLoading(false);
+    aiActionRef.current = false;
   };
 
-  const handleAIEnhance = (description) => {
+  const handleAIEnhance = async (description) => {
+    aiActionRef.current = true;
+    setAiLoading(true);
     handleInputChange("description", description);
+    setAiLoading(false);
+    aiActionRef.current = false;
   };
 
   const validateForm = () => {
@@ -107,6 +132,8 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Prevent submit if AI Assistant is updating
+    if (aiActionRef.current || aiLoading) return;
     if (!validateForm()) return;
 
     setLoading(true);
@@ -217,18 +244,21 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
             {/* Job Description with AI Assistant */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="flex items-center gap-2 text-black text-sm font-medium">
-                  Job Description
+                <label className="flex items-center gap-2 text-gray-700 text-sm font-medium">
+                  <ScrollText className="w-4 h-4" /> Job Description *
                 </label>
-                <AIAssistant
-                  onGenerate={handleAIGenerate}
-                  onEnhance={handleAIEnhance}
-                  currentDescription={formData.description}
-                  jobDetails={formData}
-                />
+                {!job && (
+                  <AIAssistant
+                    onGenerate={handleAIGenerate}
+                    onEnhance={handleAIEnhance}
+                    currentDescription={formData.description}
+                    jobDetails={formData}
+                  />
+                )}
               </div>
               <RichTextEditor
-                value={formData.description}
+                key={editorKey}
+                value={formData.description || ""}
                 onChange={(value) => handleInputChange("description", value)}
                 placeholder="Describe the role, responsibilities, and requirements... Use the AI Assistant to generate or enhance your description."
                 error={!!errors.description}
