@@ -2,19 +2,14 @@ import { useState, useEffect } from "react";
 import {
   X,
   Save,
-  Plus,
-  MapPin,
-  BadgeDollarSign,
-  ListChecks,
-  ScrollText,
-  Type,
-  Briefcase,
-  Clock,
 } from "lucide-react";
 import { createJob, updateJob } from "../../apis/jobService";
+import RichTextEditor from "./RichTextEditor";
+import AIAssistant from "./AIAssistant";
+import SkillsInput from "./SkillsInput";
 import PropTypes from "prop-types";
 
-const JobForm = ({ job = null, onSuccess }) => {
+const JobForm = ({ job = null, onSuccess, onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -78,15 +73,19 @@ const JobForm = ({ job = null, onSuccess }) => {
     }));
   };
 
-  const handleSkillsChange = (value) => {
-    const skillsArray = value
-      .split(",")
-      .map((skill) => skill.trim())
-      .filter((skill) => skill);
+  const handleSkillsChange = (skills) => {
     setFormData((prev) => ({
       ...prev,
-      skills: skillsArray,
+      skills: skills,
     }));
+  };
+
+  const handleAIGenerate = (description) => {
+    handleInputChange("description", description);
+  };
+
+  const handleAIEnhance = (description) => {
+    handleInputChange("description", description);
   };
 
   const validateForm = () => {
@@ -148,201 +147,244 @@ const JobForm = ({ job = null, onSuccess }) => {
   };
 
   return (
-    <div className="bg-white/90 h-[90%] rounded-2xl shadow-lg border border-gray-100 p-8 max-w-3xl mx-auto mb-8">
-      <h3 className="text-2xl font-bold text-black flex items-center gap-2 mb-6">
-        <Briefcase className="w-6 h-6" />
-        {job ? "Edit Job" : "Create New Job"}
-      </h3>
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-6 text-sm md:text-base"
-      >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="fixed inset-0 font-normal bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div className="flex items-center gap-3">
             <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <Type className="w-4 h-4" /> Job Title *
-              </label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => handleInputChange("title", e.target.value)}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                  errors.title ? "border-red-400" : "border-gray-200"
-                }`}
-                placeholder="e.g., Senior React Developer"
-              />
-              {errors.title && (
-                <p className="mt-1 text-sm text-red-400">{errors.title}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <MapPin className="w-4 h-4" /> Location *
-              </label>
-              <input
-                type="text"
-                value={formData.location}
-                onChange={(e) => handleInputChange("location", e.target.value)}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                  errors.location ? "border-red-400" : "border-gray-200"
-                }`}
-                placeholder="e.g., New York, NY"
-              />
-              {errors.location && (
-                <p className="mt-1 text-sm text-red-400">{errors.location}</p>
-              )}
+              <h3 className="text-xl text-black flex items-center gap-2 mb-1 ">
+                {job ? "Edit Job" : "Create New Job"}
+              </h3>
+              <p className="text-md text-gray-900 font-light">
+                Fill in the details below to {job ? "update" : "create"} your
+                job posting
+              </p>
             </div>
           </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="w-5 h-5 text-black" />
+          </button>
+        </div>
 
-          <div>
-            <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-              <ScrollText className="w-4 h-4" /> Job Description *
-            </label>
-            <textarea
-              value={formData.description}
-              onChange={(e) => handleInputChange("description", e.target.value)}
-              rows={4}
-              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all resize-none ${
-                errors.description ? "border-red-400" : "border-gray-200"
-              }`}
-              placeholder="Describe the role, responsibilities, and requirements..."
-            />
-            {errors.description && (
-              <p className="mt-1 text-sm text-red-400">{errors.description}</p>
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Job Title and Location */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Job Title
+                </label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => handleInputChange("title", e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-xl transition-all ${
+                    errors.title ? "border-red-400" : "border-gray-200"
+                  }`}
+                  placeholder="e.g., Senior React Developer"
+                />
+                {errors.title && (
+                  <p className="mt-1 text-sm text-red-400">{errors.title}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Job Location
+                </label>
+                <input
+                  type="text"
+                  value={formData.location}
+                  onChange={(e) =>
+                    handleInputChange("location", e.target.value)
+                  }
+                  className={`w-full px-4 py-3 border rounded-xl transition-all ${
+                    errors.location ? "border-red-400" : "border-gray-200"
+                  }`}
+                  placeholder="e.g., New York, NY"
+                />
+                {errors.location && (
+                  <p className="mt-1 text-sm text-red-400">{errors.location}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Job Description with AI Assistant */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="flex items-center gap-2 text-black text-sm font-medium">
+                  Job Description
+                </label>
+                <AIAssistant
+                  onGenerate={handleAIGenerate}
+                  onEnhance={handleAIEnhance}
+                  currentDescription={formData.description}
+                  jobDetails={formData}
+                />
+              </div>
+              <RichTextEditor
+                value={formData.description}
+                onChange={(value) => handleInputChange("description", value)}
+                placeholder="Describe the role, responsibilities, and requirements... Use the AI Assistant to generate or enhance your description."
+                error={!!errors.description}
+              />
+              {errors.description && (
+                <p className="mt-1 text-sm text-red-400">
+                  {errors.description}
+                </p>
+              )}
+            </div>
+
+            {/* Required Skills */}
+            <div>
+              <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                Required Skills
+              </label>
+              <SkillsInput
+                value={formData.skills}
+                onChange={handleSkillsChange}
+                placeholder="e.g., React, Node.js, MongoDB"
+              />
+            </div>
+
+            {/* Salary Range */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Min Salary
+                </label>
+                <input
+                  type="number"
+                  value={formData.salary.min}
+                  onChange={(e) => handleSalaryChange("min", e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  placeholder="50000"
+                />
+              </div>
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Max Salary
+                </label>
+                <input
+                  type="number"
+                  value={formData.salary.max}
+                  onChange={(e) => handleSalaryChange("max", e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  placeholder="80000"
+                />
+              </div>
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Currency
+                </label>
+                <select
+                  value={formData.salary.currency}
+                  onChange={(e) =>
+                    handleSalaryChange("currency", e.target.value)
+                  }
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                >
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                  <option value="INR">INR</option>
+                </select>
+              </div>
+            </div>
+            {errors.salary && (
+              <p className="text-sm text-red-400">{errors.salary}</p>
             )}
-          </div>
 
-          <div>
-            <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-              <ListChecks className="w-4 h-4" /> Required Skills
-            </label>
-            <input
-              type="text"
-              value={formData.skills.join(", ")}
-              onChange={(e) => handleSkillsChange(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-              placeholder="e.g., React, Node.js, MongoDB (comma separated)"
-            />
-          </div>
+            {/* Experience Range */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Min Experience (years)
+                </label>
+                <input
+                  type="number"
+                  value={formData.experience.min}
+                  onChange={(e) =>
+                    handleExperienceChange("min", e.target.value)
+                  }
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  min="0"
+                  max="20"
+                />
+              </div>
+              <div>
+                <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                  Max Experience (years)
+                </label>
+                <input
+                  type="number"
+                  value={formData.experience.max}
+                  onChange={(e) =>
+                    handleExperienceChange("max", e.target.value)
+                  }
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  min="0"
+                  max="20"
+                />
+              </div>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Job Type */}
             <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <BadgeDollarSign className="w-4 h-4" /> Min Salary
-              </label>
-              <input
-                type="number"
-                value={formData.salary.min}
-                onChange={(e) => handleSalaryChange("min", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-                placeholder="50000"
-              />
-            </div>
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <BadgeDollarSign className="w-4 h-4" /> Max Salary
-              </label>
-              <input
-                type="number"
-                value={formData.salary.max}
-                onChange={(e) => handleSalaryChange("max", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-                placeholder="80000"
-              />
-            </div>
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <BadgeDollarSign className="w-4 h-4" /> Currency
+              <label className="flex items-center gap-2 text-black text-sm font-medium mb-2">
+                Job Type
               </label>
               <select
-                value={formData.salary.currency}
-                onChange={(e) => handleSalaryChange("currency", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
+                value={formData.jobType}
+                onChange={(e) => handleInputChange("jobType", e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
               >
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="INR">INR</option>
+                <option value="full-time">Full Time</option>
+                <option value="part-time">Part Time</option>
+                <option value="contract">Contract</option>
+                <option value="internship">Internship</option>
+                <option value="freelance">Freelance</option>
               </select>
             </div>
-          </div>
-          {errors.salary && (
-            <p className="text-sm text-red-400">{errors.salary}</p>
-          )}
+          </form>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <Clock className="w-4 h-4" /> Min Experience (years)
-              </label>
-              <input
-                type="number"
-                value={formData.experience.min}
-                onChange={(e) => handleExperienceChange("min", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-                min="0"
-                max="20"
-              />
-            </div>
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-                <Clock className="w-4 h-4" /> Max Experience (years)
-              </label>
-              <input
-                type="number"
-                value={formData.experience.max}
-                onChange={(e) => handleExperienceChange("max", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-                min="0"
-                max="20"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="flex items-center gap-2 text-gray-700 text-sm font-medium mb-1">
-              <Briefcase className="w-4 h-4" /> Job Type
-            </label>
-            <select
-              value={formData.jobType}
-              onChange={(e) => handleInputChange("jobType", e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
-            >
-              <option value="full-time">Full Time</option>
-              <option value="part-time">Part Time</option>
-              <option value="contract">Contract</option>
-              <option value="internship">Internship</option>
-              <option value="freelance">Freelance</option>
-            </select>
-          </div>
-
-        <div className="flex justify-end gap-4 mt-8">
+        {/* Footer with Submit Button */}
+        <div className="flex justify-end gap-4 p-6 border-t border-gray-200">
           <button
-            type="submit"
+            onClick={onClose}
+            className="px-6 py-3 text-black hover:text-gray-800 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
             disabled={loading}
-            className="inline-flex items-center space-x-2 bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-xl transition-colors shadow-sm hover:shadow-md font-medium disabled:opacity-60"
+            className="inline-flex items-center space-x-2 bg-black hover:bg-gray-950 text-white px-6 py-1 rounded-xl transition-colors shadow-sm hover:shadow-md disabled:opacity-60"
           >
             {loading ? (
               <span>Saving...</span>
             ) : (
               <>
-                <Save className="w-5 h-5" />
-                <span>{job ? "Update Job" : "Create Job"}</span>
+                <span>{job ? "Update Job" : "Save Job"}</span>
               </>
             )}
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
 
 JobForm.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
   job: PropTypes.object,
   onSuccess: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default JobForm;

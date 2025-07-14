@@ -161,7 +161,7 @@ const MainPage = () => {
 
   const handleCreateJob = () => {
     setEditingJob(null);
-    setShowJobForm(true);
+    setShowJobModal(true);
   };
 
   // handleJobFormSuccess is now handled inline in JobForm's onSuccess
@@ -215,31 +215,20 @@ const MainPage = () => {
             />
             {/* Job Form Modal */}
             {showJobModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fade-in">
-                <div className="relative w-full max-w-2xl mx-auto">
-                  <div className="absolute top-2 right-2 z-10">
-                    <button
-                      className="p-2 rounded-full bg-white hover:bg-gray-100 shadow"
-                      onClick={() => {
-                        setShowJobModal(false);
-                        setEditingJob(null);
-                      }}
-                    >
-                      <span className="text-xl">×</span>
-                    </button>
-                  </div>
-                  <JobForm
-                    job={editingJob && editingJob._id ? editingJob : null}
-                    onSuccess={() => {
-                      setEditingJob(null);
-                      setShowJobModal(false);
-                      fetchJobs();
-                      fetchJobStats();
-                      toast.success(editingJob && editingJob._id ? "Job updated successfully" : "Job created successfully");
-                    }}
-                  />
-                </div>
-              </div>
+              <JobForm
+                job={editingJob && editingJob._id ? editingJob : null}
+                onSuccess={() => {
+                  setEditingJob(null);
+                  setShowJobModal(false);
+                  fetchJobs();
+                  fetchJobStats();
+                  toast.success(editingJob && editingJob._id ? "Job updated successfully" : "Job created successfully");
+                }}
+                onClose={() => {
+                  setShowJobModal(false);
+                  setEditingJob(null);
+                }}
+              />
             )}
           </div>
         );

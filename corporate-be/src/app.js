@@ -9,6 +9,7 @@ import { config } from "./config/index.js";
 import { userRouter } from "./routes/user.route.js";
 import { jobRouter } from "./routes/job.route.js";
 import { applicationRouter } from "./routes/application.route.js";
+import { geminiRouter } from "./routes/gemini.route.js";
 import { Application } from "./models/application.model.js";
 
 const app = express();
@@ -60,6 +61,7 @@ app.get("/health", (req, res) => {
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/jobs", jobRouter);
 app.use("/api/v1/applications", applicationRouter);
+app.use("/api/v1/gemini", geminiRouter);
 
 // 404 handler
 app.use("*", (req, res) => {
