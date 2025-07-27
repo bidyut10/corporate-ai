@@ -37,14 +37,14 @@ export default function FeaturesSection() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="space-y-3 mb-16">
-          <p className="text-4xl text-center font-semibold text-gray-900 ">
+          <p className="text-4xl text-center font-semibold text-neutral-900 ">
             Focus on creating
           </p>
-          <p className="text-4xl text-center font-semibold text-gray-900 leading-snug">
+          <p className="text-4xl text-center font-semibold text-neutral-900 leading-snug">
             while we handle{" "}
             <span className="block sm:inline">smarter code</span>
           </p>
-          <p className="text-gray-600 mt-4 text-start md:text-center px-0 md:px-64 leading-relaxed">
+          <p className="text-neutral-600 mt-4 text-start md:text-center px-0 md:px-64 leading-relaxed">
             CodewiseAI transforms how developers work by providing intelligent,
             real-time code analysis. Our platform helps you write cleaner, more
             efficient code through actionable insights that catch issues before

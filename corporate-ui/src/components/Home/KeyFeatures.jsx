@@ -29,7 +29,7 @@ const KeyFeatures = () => {
       visual: (
         <div className="mt-6 p-4 bg-purple-50 rounded-xl border border-purple-100">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm text-gray-700">Match Score</span>
+            <span className="text-sm text-neutral-700">Match Score</span>
             <span className="text-2xl font-normal text-purple-600">92%</span>
           </div>
           <div className="h-3 bg-purple-100 rounded-full">
@@ -123,10 +123,10 @@ const KeyFeatures = () => {
                 />
               </div>
               <div className="flex-1">
-                <div className="text-xs font-normal text-gray-700">
+                <div className="text-xs font-normal text-neutral-700">
                   resume.pdf
                 </div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-neutral-500">
                   2.3 MB • Processing...
                 </div>
               </div>
@@ -157,10 +157,10 @@ const KeyFeatures = () => {
                 <span className="text-xs font-normal text-pink-600">S</span>
               </div>
               <div className="flex-1">
-                <div className="text-xs font-normal text-gray-700">
+                <div className="text-xs font-normal text-neutral-700">
                   Sarah Chen
                 </div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-neutral-500">
                   Added a note • 2 min ago
                 </div>
               </div>
@@ -185,15 +185,15 @@ const KeyFeatures = () => {
           <div className="grid grid-cols-3 gap-3 mb-3">
             <div className="text-center p-2 bg-white rounded-lg shadow-sm border border-red-100">
               <div className="text-lg font-normal text-red-600">47</div>
-              <div className="text-xs text-gray-600">Applied</div>
+              <div className="text-xs text-neutral-600">Applied</div>
             </div>
             <div className="text-center p-2 bg-white rounded-lg shadow-sm border border-red-100">
               <div className="text-lg font-normal text-red-600">12</div>
-              <div className="text-xs text-gray-600">Qualified</div>
+              <div className="text-xs text-neutral-600">Qualified</div>
             </div>
             <div className="text-center p-2 bg-white rounded-lg shadow-sm border border-red-100">
               <div className="text-lg font-normal text-red-600">3</div>
-              <div className="text-xs text-gray-600">Shortlisted</div>
+              <div className="text-xs text-neutral-600">Shortlisted</div>
             </div>
           </div>
           <div className="flex items-center gap-2 text-xs text-red-600">
@@ -218,11 +218,11 @@ const KeyFeatures = () => {
         case "red":
           return `${baseClasses} border-red-200 shadow-xl shadow-red-100/50 scale-105`;
         default:
-          return `${baseClasses} border-gray-200 shadow-xl scale-105`;
+          return `${baseClasses} border-neutral-200 shadow-xl scale-105`;
       }
     }
 
-    return `${baseClasses} border-gray-200 hover:border-gray-300`;
+    return `${baseClasses} border-neutral-200 hover:border-neutral-300`;
   };
 
   const getIconClasses = (feature) => {
@@ -234,7 +234,7 @@ const KeyFeatures = () => {
       case "red":
         return "p-4 rounded-xl bg-red-50 group-hover:bg-red-100 transition-all duration-300";
       default:
-        return "p-4 rounded-xl bg-gray-50 group-hover:bg-gray-100 transition-all duration-300";
+        return "p-4 rounded-xl bg-neutral-50 group-hover:bg-neutral-100 transition-all duration-300";
     }
   };
 
@@ -247,7 +247,7 @@ const KeyFeatures = () => {
       case "red":
         return "text-sm font-normal px-3 py-1 rounded-full bg-red-100 text-red-700";
       default:
-        return "text-sm font-normal px-3 py-1 rounded-full bg-gray-100 text-gray-700";
+        return "text-sm font-normal px-3 py-1 rounded-full bg-neutral-100 text-neutral-700";
     }
   };
 
@@ -296,7 +296,7 @@ const KeyFeatures = () => {
                 <h3 className="text-xl font-normal text-black mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-neutral-600 leading-relaxed mb-4">
                   {feature.description}
                 </p>
 

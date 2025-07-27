@@ -49,9 +49,9 @@ const LoginForm = ({ toggleForm, onNotification }) => {
 
   return (
     <form className="space-y-3" onSubmit={handleLogin}>
-      <div className="relative rounded-md shadow-xs shadow-gray-100">
+      <div className="relative rounded-md shadow-xs shadow-neutral-100">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Mail className="h-5 w-5 text-gray-400" strokeWidth={1.5} />
+          <Mail className="h-5 w-5 text-neutral-400" strokeWidth={1.5} />
         </div>
         <input
           id="email"
@@ -60,8 +60,8 @@ const LoginForm = ({ toggleForm, onNotification }) => {
           autoComplete="email"
           required
           className={`appearance-none block w-full pl-10 px-3 py-2.5 border ${
-            errors.email ? "border-red-500" : "border-gray-200"
-          } rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-400 focus:border-purple-400 text-sm`}
+            errors.email ? "border-red-500" : "border-neutral-200"
+          } rounded-lg shadow-sm placeholder-neutral-400 focus:outline-none focus:ring-purple-400 focus:border-purple-400 text-sm`}
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -71,9 +71,9 @@ const LoginForm = ({ toggleForm, onNotification }) => {
         )}
       </div>
 
-      <div className="relative rounded-md shadow-xs shadow-gray-100">
+      <div className="relative rounded-md shadow-xs shadow-neutral-100">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Lock className="h-5 w-5 text-gray-400" strokeWidth={1.5} />
+          <Lock className="h-5 w-5 text-neutral-400" strokeWidth={1.5} />
         </div>
         <input
           id="password"
@@ -82,8 +82,8 @@ const LoginForm = ({ toggleForm, onNotification }) => {
           autoComplete="current-password"
           required
           className={`appearance-none block w-full pl-10 pr-10 px-3 py-2.5 border ${
-            errors.password ? "border-red-500" : "border-gray-200"
-          } rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-400 focus:border-purple-400 text-sm`}
+            errors.password ? "border-red-500" : "border-neutral-200"
+          } rounded-lg shadow-sm placeholder-neutral-400 focus:outline-none focus:ring-purple-400 focus:border-purple-400 text-sm`}
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -94,9 +94,9 @@ const LoginForm = ({ toggleForm, onNotification }) => {
           onClick={togglePasswordVisibility}
         >
           {showPassword ? (
-            <EyeOff className="h-5 w-5 text-gray-400" strokeWidth={1.5} />
+            <EyeOff className="h-5 w-5 text-neutral-400" strokeWidth={1.5} />
           ) : (
-            <Eye className="h-5 w-5 text-gray-400" strokeWidth={1.5} />
+            <Eye className="h-5 w-5 text-neutral-400" strokeWidth={1.5} />
           )}
         </button>
         {errors.password && (
@@ -110,11 +110,11 @@ const LoginForm = ({ toggleForm, onNotification }) => {
             id="remember-me"
             name="remember-me"
             type="checkbox"
-            className="h-4 w-4 text-purple-400 focus:ring-purple-400 border-gray-300 rounded"
+            className="h-4 w-4 text-purple-400 focus:ring-purple-400 border-neutral-300 rounded"
           />
           <label
             htmlFor="remember-me"
-            className="ml-2 block text-xs sm:text-sm text-gray-700"
+            className="ml-2 block text-xs sm:text-sm text-neutral-700"
           >
             Remember me
           </label>
@@ -135,13 +135,13 @@ const LoginForm = ({ toggleForm, onNotification }) => {
       </div>
 
       <div className="flex items-center my-3">
-        <div className="flex-grow border-t border-gray-200"></div>
-        <div className="mx-3 text-xs text-gray-500 font-normal">
+        <div className="flex-grow border-t border-neutral-200"></div>
+        <div className="mx-3 text-xs text-neutral-500 font-normal">
           or continue with
         </div>
-        <div className="flex-grow border-t border-gray-200"></div>
+        <div className="flex-grow border-t border-neutral-200"></div>
       </div>
-      <p className="mt-8 text-center text-xs sm:text-sm font-normal text-gray-600">
+      <p className="mt-8 text-center text-xs sm:text-sm font-normal text-neutral-600">
         Don&apos;t have an account?{" "}
         <button
           type="button"

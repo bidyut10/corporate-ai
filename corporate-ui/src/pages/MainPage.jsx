@@ -241,10 +241,10 @@ const MainPage = () => {
               <div className="bg-white rounded-lg shadow-md p-6 mb-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900">
+                    <h2 className="text-xl font-bold text-neutral-900">
                       {selectedJobForApplications.title}
                     </h2>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-600">
                       {selectedJobForApplications.location}
                     </p>
                   </div>
@@ -296,7 +296,7 @@ const MainPage = () => {
                 <Bell className="w-5 h-5 text-black cursor-pointer" />
             
                 <div
-                  className="w-8 h-8 bg-gradient-to-br from-gray-900 to-slate-950 rounded-full flex items-center justify-center text-white font-medium text-md text-center cursor-pointer"
+                  className="w-8 h-8 bg-gradient-to-br from-neutral-900 to-slate-950 rounded-full flex items-center justify-center text-white font-medium text-md text-center cursor-pointer"
                   onClick={() => setShowProfilePopup(true)}
                 >
                   {user?.name.charAt(0).toUpperCase() || "U"}
@@ -325,19 +325,19 @@ const MainPage = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
               <button
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500"
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-neutral-100 text-neutral-500"
                 onClick={() => setShowJobDetailsModal(false)}
               >
                 <X className="w-5 h-5" />
               </button>
               <div className="p-8">
                 <h2 className="text-2xl font-bold mb-2">{viewingJob.title}</h2>
-                <div className="mb-4 text-gray-600">{viewingJob.location}</div>
+                <div className="mb-4 text-neutral-600">{viewingJob.location}</div>
                 <div className="mb-4">
                   <span className="capitalize px-2 py-1 bg-purple-400/10 text-purple-400 rounded-lg text-xs font-medium mr-2">
                     {viewingJob.jobType}
                   </span>
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium mr-2">
+                  <span className="px-2 py-1 bg-neutral-100 text-neutral-700 rounded-lg text-xs font-medium mr-2">
                     {viewingJob.status}
                   </span>
                   <span className="px-2 py-1 bg-green-100 text-green-700 rounded-lg text-xs font-medium">

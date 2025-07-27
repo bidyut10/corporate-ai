@@ -49,7 +49,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-gray-950 text-lg max-w-md">
+              <p className="text-neutral-950 text-lg max-w-md">
                 Corporate AI helps you hire smarter by instantly analyzing
                 resumes, scoring candidates, and delivering clear, data-driven
                 insights—so you can focus on the best talent.
@@ -73,11 +73,11 @@ const Footer = () => {
             </div>
 
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-gray-950">
+              <div className="flex items-center gap-2 text-neutral-950">
                 <MapPin size={16} />
                 <span>India</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-950">
+              <div className="flex items-center gap-2 text-neutral-950">
                 <Mail size={16} />
                 <span>bidyut.kundu.dev@gmail.com</span>
               </div>
@@ -88,14 +88,14 @@ const Footer = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="font-normal">Stay Updated</h3>
-              <p className="text-gray-950">
+              <p className="text-neutral-950">
                 Get the latest updates about features and improvements
               </p>
               <form onSubmit={handleSubscribe} className="space-y-3">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full p-3 rounded-xl border border-gray-200 text-gray-950 focus:outline-none focus:border-purple-400 transition-colors"
+                  className="w-full p-3 rounded-xl border border-neutral-200 text-neutral-950 focus:outline-none focus:border-purple-400 transition-colors"
                 />
                 <div className="inline-block rounded-[12px] bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-[1.5px] w-full">
                   <button
@@ -118,7 +118,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg hover:bg-purple-400 transition-colors"
                 >
-                  <Twitter className="w-5 h-5 text-gray-950" />
+                  <Twitter className="w-5 h-5 text-neutral-950" />
                 </a>
                 <a
                   href="https://github.com/bidyut10"
@@ -126,7 +126,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg hover:bg-purple-400 transition-colors"
                 >
-                  <GithubIcon className="w-5 h-5 text-gray-950" />
+                  <GithubIcon className="w-5 h-5 text-neutral-950" />
                 </a>
                 <a
                   href="https://www.producthunt.com/products/codewise-ai"
@@ -134,7 +134,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg hover:bg-purple-400 transition-colors"
                 >
-                  <Box className="w-5 h-5 text-gray-950" />
+                  <Box className="w-5 h-5 text-neutral-950" />
                 </a>
               </div>
             </div>

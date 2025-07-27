@@ -84,7 +84,7 @@ const TestimonialCard = ({ item }) => {
         <div className="z-10 mt-10">
           <p className="mb-4 text-sm">"{item.text}"</p>
           <p className="text-sm font-semibold">{item.name}</p>
-          <p className="text-xs text-gray-700">{item.role}</p>
+          <p className="text-xs text-neutral-700">{item.role}</p>
         </div>
         <Sparkles className="w-4 h-4 mt-4 self-end" />
       </div>
@@ -124,7 +124,7 @@ const TestimonialGrid = () => {
   return (
     <div id="testimonials" className="py-32 px-4 w-full max-w-7xl">
       <div className="space-y-3 mb-16">
-        <p className="text-[32px] md:text-5xl text-center font-normal text-gray-900 ">
+        <p className="text-[32px] md:text-5xl text-center font-normal text-neutral-900 ">
           Powered by passion,
         </p>
         <h1 className="text-[32px] md:text-5xl text-[#181818] mt-10 leading-relaxed text-center font-normal">
@@ -132,7 +132,7 @@ const TestimonialGrid = () => {
             built for people{" "}
           </span>like you
         </h1>
-        <p className="text-gray-600 text-start md:text-center text-xl">
+        <p className="text-neutral-600 text-start md:text-center text-xl">
           Join the community of leading creators and get more out of your
           business.
         </p>

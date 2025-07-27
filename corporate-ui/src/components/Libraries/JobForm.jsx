@@ -1,12 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import { useState, useEffect, useRef } from "react";
 import {
   X,
-  Save,
-  ScrollText,
 } from "lucide-react";
 import { createJob, updateJob } from "../../apis/jobService";
 import RichTextEditor from "./RichTextEditor";
-import AIAssistant from "./AIAssistant";
+// import AIAssistant from "./AIAssistant";
 import SkillsInput from "./SkillsInput";
 import PropTypes from "prop-types";
 
@@ -29,8 +28,8 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [aiLoading, setAiLoading] = useState(false); // Track AI Assistant loading
-  const aiActionRef = useRef(false); // Track if AI Assistant is updating
+  // const [aiLoading, setAiLoading] = useState(false); // Track AI Assistant loading
+  // const aiActionRef = useRef(false); // Track if AI Assistant is updating
   const [editorKey, setEditorKey] = useState("new");
 
   useEffect(() => {
@@ -97,21 +96,21 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
   };
 
   // AI Assistant handlers
-  const handleAIGenerate = async (description) => {
-    aiActionRef.current = true;
-    setAiLoading(true);
-    handleInputChange("description", description);
-    setAiLoading(false);
-    aiActionRef.current = false;
-  };
+  // const handleAIGenerate = (description) => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     description,
+  //   }));
+  //   setEditorKey('ai-' + Date.now()); // force re-mount
+  // };
 
-  const handleAIEnhance = async (description) => {
-    aiActionRef.current = true;
-    setAiLoading(true);
-    handleInputChange("description", description);
-    setAiLoading(false);
-    aiActionRef.current = false;
-  };
+  // const handleAIEnhance = async (description) => {
+  //   aiActionRef.current = true;
+  //   setAiLoading(true);
+  //   handleInputChange("description", description);
+  //   setAiLoading(false);
+  //   aiActionRef.current = false;
+  // };
 
   const validateForm = () => {
     const newErrors = {};
@@ -133,7 +132,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Prevent submit if AI Assistant is updating
-    if (aiActionRef.current || aiLoading) return;
+    // if (aiActionRef.current || aiLoading) return;
     if (!validateForm()) return;
 
     setLoading(true);
@@ -174,30 +173,20 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 font-normal bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <div className="flex items-center gap-3">
-            <div>
-              <h3 className="text-xl text-black flex items-center gap-2 mb-1 ">
-                {job ? "Edit Job" : "Create New Job"}
-              </h3>
-              <p className="text-md text-gray-900 font-light">
-                Fill in the details below to {job ? "update" : "create"} your
-                job posting
-              </p>
-            </div>
-          </div>
+    <div className="fixed inset-0 font-normal bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4 truncate">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[45rem] max-h-[90vh] flex flex-col">
+        <div className="flex items-center justify-between px-6 py-3 rounded-t-xl bg-gradient-to-t from-neutral-100 to-neutral-50">
+          <h3 className="text-md font-semibold text-neutral-900 flex items-center gap-2 mb-1 ">
+            {job ? "Edit Job" : "Create New Job"}
+          </h3>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"
           >
             <X className="w-5 h-5 text-black" />
           </button>
         </div>
 
-        {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Job Title and Location */}
@@ -210,8 +199,8 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange("title", e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl transition-all ${
-                    errors.title ? "border-red-400" : "border-gray-200"
+                  className={`w-full px-4 py-3 border rounded-xl transition-all focus:outline-none focus:border-purple-500 ${
+                    errors.title ? "border-red-400" : "border-neutral-200"
                   }`}
                   placeholder="e.g., Senior React Developer"
                 />
@@ -230,8 +219,8 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   onChange={(e) =>
                     handleInputChange("location", e.target.value)
                   }
-                  className={`w-full px-4 py-3 border rounded-xl transition-all ${
-                    errors.location ? "border-red-400" : "border-gray-200"
+                  className={`w-full px-4 py-3 border rounded-xl transition-all focus:outline-none focus:border-purple-500 ${
+                    errors.location ? "border-red-400" : "border-neutral-200"
                   }`}
                   placeholder="e.g., New York, NY"
                 />
@@ -244,23 +233,23 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
             {/* Job Description with AI Assistant */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="flex items-center gap-2 text-gray-700 text-sm font-medium">
-                  <ScrollText className="w-4 h-4" /> Job Description *
+                <label className="flex items-center gap-2 text-black text-sm font-medium">
+                  Job Description
                 </label>
-                {!job && (
+                {/* {!job && (
                   <AIAssistant
                     onGenerate={handleAIGenerate}
                     onEnhance={handleAIEnhance}
                     currentDescription={formData.description}
                     jobDetails={formData}
                   />
-                )}
+                )} */}
               </div>
               <RichTextEditor
                 key={editorKey}
                 value={formData.description || ""}
                 onChange={(value) => handleInputChange("description", value)}
-                placeholder="Describe the role, responsibilities, and requirements... Use the AI Assistant to generate or enhance your description."
+                placeholder="Describe the role, responsibilities, and requirements..."
                 error={!!errors.description}
               />
               {errors.description && (
@@ -292,7 +281,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   type="number"
                   value={formData.salary.min}
                   onChange={(e) => handleSalaryChange("min", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
                   placeholder="50000"
                 />
               </div>
@@ -304,7 +293,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   type="number"
                   value={formData.salary.max}
                   onChange={(e) => handleSalaryChange("max", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
                   placeholder="80000"
                 />
               </div>
@@ -317,7 +306,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   onChange={(e) =>
                     handleSalaryChange("currency", e.target.value)
                   }
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
                 >
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
@@ -342,7 +331,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   onChange={(e) =>
                     handleExperienceChange("min", e.target.value)
                   }
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
                   min="0"
                   max="20"
                 />
@@ -357,7 +346,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
                   onChange={(e) =>
                     handleExperienceChange("max", e.target.value)
                   }
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
                   min="0"
                   max="20"
                 />
@@ -372,7 +361,7 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
               <select
                 value={formData.jobType}
                 onChange={(e) => handleInputChange("jobType", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl transition-all"
+                className="w-full px-4 py-3 border border-neutral-200 rounded-xl transition-all focus:outline-none focus:border-purple-500"
               >
                 <option value="full-time">Full Time</option>
                 <option value="part-time">Part Time</option>
@@ -385,23 +374,23 @@ const JobForm = ({ job = null, onSuccess, onClose }) => {
         </div>
 
         {/* Footer with Submit Button */}
-        <div className="flex justify-end gap-4 p-6 border-t border-gray-200">
+        <div className="flex justify-end gap-4 p-6 border-t border-neutral-200">
           <button
             onClick={onClose}
-            className="px-6 py-3 text-black hover:text-gray-800 transition-colors"
+            className="px-6 py-2 text-black hover:text-neutral-800 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="inline-flex items-center space-x-2 bg-black hover:bg-gray-950 text-white px-6 py-1 rounded-xl transition-colors shadow-sm hover:shadow-md disabled:opacity-60"
+            className="inline-flex items-center space-x-2 bg-black hover:bg-neutral-950 text-white px-6 py-2 rounded-xl transition-colors shadow-sm hover:shadow-md disabled:opacity-60"
           >
             {loading ? (
               <span>Saving...</span>
             ) : (
               <>
-                <span>{job ? "Update Job" : "Save Job"}</span>
+                <span className="text-sm">{job ? "Update Job" : "Save Job"}</span>
               </>
             )}
           </button>

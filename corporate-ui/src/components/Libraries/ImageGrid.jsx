@@ -27,11 +27,11 @@ const ImageGrid = () => {
             alt="User"
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-red-600 bg-white p-1 shadow-sm transition-transform "
           />
-          <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-600 bg-white text-xs font-medium text-gray-900 shadow-sm transition-transform">
+          <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-purple-600 bg-white text-xs font-medium text-neutral-900 shadow-sm transition-transform">
             50+
           </span>
         </div>
-        <span className="text-xs sm:text-sm text-gray-400 font-normal">
+        <span className="text-xs sm:text-sm text-neutral-400 font-normal">
           Trusted by 50+ companies
         </span>
       </div>

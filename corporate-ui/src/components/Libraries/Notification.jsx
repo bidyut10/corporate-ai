@@ -58,7 +58,7 @@ const Notification = ({ type = "info", message, isVisible, onClose, duration = 5
         <div className="flex items-start">
           <div className="flex-shrink-0">{getIcon()}</div>
           <div className="ml-3 flex-1">
-            <p className="text-sm font-medium text-gray-900">{message}</p>
+            <p className="text-sm font-medium text-neutral-900">{message}</p>
           </div>
           <div className="ml-4 flex-shrink-0">
             <button
@@ -66,7 +66,7 @@ const Notification = ({ type = "info", message, isVisible, onClose, duration = 5
                 setIsShown(false);
                 setTimeout(() => onClose(), 300);
               }}
-              className="inline-flex text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600 transition-colors"
+              className="inline-flex text-neutral-400 hover:text-neutral-600 focus:outline-none focus:text-neutral-600 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

@@ -40,15 +40,15 @@ const HowItWorks = () => {
               <div className="w-6 h-6 bg-purple-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-3 h-3 text-purple-600" />
               </div>
-              <div className="text-sm font-normal text-gray-900">
+              <div className="text-sm font-normal text-neutral-900">
                 Frontend Developer
               </div>
             </div>
             <div className="space-y-2">
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div className="h-2 bg-neutral-200 rounded-full overflow-hidden">
                 <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full w-3/4 transition-all duration-1000"></div>
               </div>
-              <div className="text-xs text-gray-500 flex items-center gap-1">
+              <div className="text-xs text-neutral-500 flex items-center gap-1">
                 <Sparkles className="w-3 h-3" />
                 AI Writing: 75% complete
               </div>
@@ -81,7 +81,7 @@ const HowItWorks = () => {
         <div className="bg-white p-4 rounded-xl shadow-md border border-pink-100 h-52">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-normal text-gray-900">
+              <div className="text-sm font-normal text-neutral-900">
                 Applications
               </div>
               <div className="text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full flex items-center gap-1">
@@ -109,7 +109,7 @@ const HowItWorks = () => {
               ].map((candidate, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-2 bg-gray-50 rounded-lg"
+                  className="flex items-center justify-between p-2 bg-neutral-50 rounded-lg"
                 >
                   <div className="flex items-center gap-2">
                     <div
@@ -117,7 +117,7 @@ const HowItWorks = () => {
                     >
                       <Users className="w-3 h-3" />
                     </div>
-                    <div className="text-xs text-gray-700">
+                    <div className="text-xs text-neutral-700">
                       {candidate.name}
                     </div>
                   </div>
@@ -147,7 +147,7 @@ const HowItWorks = () => {
               <div className="w-6 h-6 bg-red-100 rounded-lg flex items-center justify-center">
                 <Brain className="w-3 h-3 text-red-600" />
               </div>
-              <div className="text-sm font-normal text-gray-900">
+              <div className="text-sm font-normal text-neutral-900">
                 AI Processing
               </div>
             </div>
@@ -159,14 +159,14 @@ const HowItWorks = () => {
               ].map((metric, i) => (
                 <div key={i} className="space-y-1">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-600">
+                    <span className="text-xs text-neutral-600">
                       {metric.label}
                     </span>
                     <span className="text-xs font-normal text-red-600">
                       {metric.value}%
                     </span>
                   </div>
-                  <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-neutral-200 rounded-full overflow-hidden">
                     <div
                       className={`h-1.5 ${metric.color} rounded-full transition-all duration-1000`}
                       style={{ width: `${metric.value}%` }}
@@ -192,7 +192,7 @@ const HowItWorks = () => {
         <div className="bg-white p-4 rounded-xl shadow-md border border-indigo-100 h-52">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-normal text-gray-900">
+              <div className="text-sm font-normal text-neutral-900">
                 Top Candidates
               </div>
               <div className="text-xs text-indigo-600 bg-indigo-100 px-2 py-1 rounded-full flex items-center gap-1">
@@ -223,7 +223,7 @@ const HowItWorks = () => {
               ].map((candidate, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-2 bg-gray-50 rounded-lg"
+                  className="flex items-center justify-between p-2 bg-neutral-50 rounded-lg"
                 >
                   <div className="flex items-center gap-2">
                     <div
@@ -231,7 +231,7 @@ const HowItWorks = () => {
                     >
                       {candidate.rank}
                     </div>
-                    <div className="text-xs text-gray-700">
+                    <div className="text-xs text-neutral-700">
                       {candidate.name}
                     </div>
                   </div>
@@ -283,20 +283,20 @@ const HowItWorks = () => {
                       ? `${step.bgColor} border-${
                           step.accentColor.split("-")[1]
                         }-200 shadow-xl`
-                      : "bg-white border-gray-100 shadow-md hover:shadow-xl"
+                      : "bg-white border-neutral-100 shadow-md hover:shadow-xl"
                   }`}
                 >
                   {/* Step Number & Icon */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-xs font-normal text-gray-400 tracking-wider">
+                    <div className="text-xs font-normal text-neutral-400 tracking-wider">
                       STEP {index + 1}
                     </div>
                     <div
                       className={`px-3 py-1 rounded-full text-xs font-normal flex items-center gap-1 ${
                         activeStep === index
                           ? step.accentColor
-                          : "text-gray-500"
-                      } ${activeStep === index ? step.bgColor : "bg-gray-50"}`}
+                          : "text-neutral-500"
+                      } ${activeStep === index ? step.bgColor : "bg-neutral-50"}`}
                     >
                       {step.statIcon}
                       {step.stats}
@@ -328,7 +328,7 @@ const HowItWorks = () => {
                 {index < howItWorksSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-20 -right-3 z-10">
                     <div className="w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center">
-                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                      <ChevronRight className="w-4 h-4 text-neutral-400" />
                     </div>
                   </div>
                 )}

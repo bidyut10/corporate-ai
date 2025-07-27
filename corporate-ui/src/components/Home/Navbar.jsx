@@ -8,9 +8,9 @@ const Navbar = () => {
   const { checkAuthAndRedirect } = useAuth();
   
   const navigation = [
+    { name: "How it Works", href: "#how_it_works" },
     { name: "Features", href: "#features" },
-    { name: "How it Works", href: "#how-it-works" },
-    { name: "Pricing", href: "#pricing" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -35,7 +35,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-sm cursor-pointer text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-sm cursor-pointer text-neutral-600 hover:text-neutral-900 transition-colors"
                 >
                   {item.name}
                 </a>
@@ -57,9 +57,9 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-gray-600" />
+                <X className="w-6 h-6 text-neutral-600" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-600" />
+                <Menu className="w-6 h-6 text-neutral-600" />
               )}
             </button>
           </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  className="block text-sm text-neutral-600 hover:text-neutral-900 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -81,7 +81,7 @@ const Navbar = () => {
               <div className="flex items-center gap-4 w-full">
                 <div className="w-full inline-block rounded-[10px] bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-[1.5px]">
                   <button
-                    className="text-sm w-full text-white bg-black px-4 pt-1.5 pb-2 rounded-[9px] hover:bg-[#181818] transition-all"
+                    className="text-sm w-full text-white bg-black px-4 pt-2.5 pb-3 rounded-[9px] hover:bg-[#181818] transition-all"
                     onClick={handleLoginClick}
                   >
                     Log in

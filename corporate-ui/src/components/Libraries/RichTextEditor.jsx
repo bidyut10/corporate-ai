@@ -49,12 +49,12 @@ const RichTextEditor = ({
 
   const MenuBar = () => {
     return (
-      <div className="border-b border-gray-200 p-2 flex flex-wrap gap-1 bg-gray-50 rounded-t-lg">
+      <div className="border-b border-neutral-200 p-2 flex flex-wrap gap-1 bg-neutral-50 rounded-t-lg">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('bold') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('bold') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Bold"
         >
@@ -64,8 +64,8 @@ const RichTextEditor = ({
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('italic') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('italic') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Italic"
         >
@@ -74,20 +74,20 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('underline') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('underline') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Underline"
         >
           <UnderlineIcon className="w-4 h-4" />
         </button>
 
-        <div className="w-px h-6 bg-gray-300 mx-1"></div>
+        <div className="w-px h-6 bg-neutral-300 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('heading', { level: 1 }) ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('heading', { level: 1 }) ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Heading 1"
         >
@@ -96,20 +96,20 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('heading', { level: 2 }) ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('heading', { level: 2 }) ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Heading 2"
         >
           <Heading2 className="w-4 h-4" />
         </button>
 
-        <div className="w-px h-6 bg-gray-300 mx-1"></div>
+        <div className="w-px h-6 bg-neutral-300 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('bulletList') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('bulletList') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Bullet List"
         >
@@ -118,20 +118,20 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('orderedList') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('orderedList') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Numbered List"
         >
           <ListOrdered className="w-4 h-4" />
         </button>
 
-        <div className="w-px h-6 bg-gray-300 mx-1"></div>
+        <div className="w-px h-6 bg-neutral-300 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive({ textAlign: 'left' }) ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive({ textAlign: 'left' }) ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Align Left"
         >
@@ -140,8 +140,8 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive({ textAlign: 'center' }) ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive({ textAlign: 'center' }) ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Align Center"
         >
@@ -150,20 +150,20 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive({ textAlign: 'right' }) ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive({ textAlign: 'right' }) ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Align Right"
         >
           <AlignRight className="w-4 h-4" />
         </button>
 
-        <div className="w-px h-6 bg-gray-300 mx-1"></div>
+        <div className="w-px h-6 bg-neutral-300 mx-1"></div>
 
         <button
           onClick={() => editor.chain().focus().toggleCode().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('code') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('code') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Inline Code"
         >
@@ -172,8 +172,8 @@ const RichTextEditor = ({
         
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-            editor.isActive('codeBlock') ? 'bg-purple-100 text-purple-600' : 'text-gray-600'
+          className={`p-2 rounded hover:bg-neutral-200 transition-colors ${
+            editor.isActive('codeBlock') ? 'bg-purple-100 text-purple-600' : 'text-neutral-600'
           }`}
           title="Code Block"
         >
@@ -184,7 +184,7 @@ const RichTextEditor = ({
   };
 
   return (
-    <div className={`border rounded-xl overflow-hidden ${error ? 'border-red-400' : 'border-gray-200'} ${className}`}>
+    <div className={`border rounded-xl overflow-hidden ${error ? 'border-red-400' : 'border-neutral-200'} ${className}`}>
       <MenuBar />
       <EditorContent 
         editor={editor} 

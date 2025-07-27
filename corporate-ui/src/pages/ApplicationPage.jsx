@@ -200,10 +200,10 @@ const ApplicationPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading job details...</p>
+          <p className="mt-4 text-neutral-600">Loading job details...</p>
         </div>
       </div>
     );
@@ -211,10 +211,10 @@ const ApplicationPage = () => {
 
   if (!job) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Job Not Found</h2>
-          <p className="text-gray-600 mb-6">The job you're looking for doesn't exist.</p>
+          <h2 className="text-2xl font-bold text-neutral-800 mb-4">Job Not Found</h2>
+          <p className="text-neutral-600 mb-6">The job you're looking for doesn't exist.</p>
           <button
             onClick={() => navigate('/')}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
@@ -228,7 +228,7 @@ const ApplicationPage = () => {
 
   if (job.status !== 'active') {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
           <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-lg mb-6">
             <h2 className="text-xl font-bold mb-2">Job Not Active</h2>
@@ -246,12 +246,12 @@ const ApplicationPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-neutral-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Job Details Header */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{job.title}</h1>
-          <p className="text-gray-600 mb-4">{job.location}</p>
+          <h1 className="text-3xl font-bold text-neutral-900 mb-2">{job.title}</h1>
+          <p className="text-neutral-600 mb-4">{job.location}</p>
           <div className="flex flex-wrap gap-2 mb-4">
             {job.skills?.map((skill, index) => (
               <span
@@ -264,33 +264,33 @@ const ApplicationPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <span className="font-semibold text-gray-700">Experience:</span>
-              <span className="ml-2 text-gray-600">
+              <span className="font-semibold text-neutral-700">Experience:</span>
+              <span className="ml-2 text-neutral-600">
                 {job.experience?.min}-{job.experience?.max} years
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-700">Salary:</span>
-              <span className="ml-2 text-gray-600">
+              <span className="font-semibold text-neutral-700">Salary:</span>
+              <span className="ml-2 text-neutral-600">
                 ${job.salary?.min?.toLocaleString()} - ${job.salary?.max?.toLocaleString()}
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-700">Type:</span>
-              <span className="ml-2 text-gray-600 capitalize">{job.jobType}</span>
+              <span className="font-semibold text-neutral-700">Type:</span>
+              <span className="ml-2 text-neutral-600 capitalize">{job.jobType}</span>
             </div>
           </div>
         </div>
 
         {/* Application Form */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Apply for this Position</h2>
+          <h2 className="text-2xl font-bold text-neutral-900 mb-6">Apply for this Position</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -299,7 +299,7 @@ const ApplicationPage = () => {
                   value={formData.applicantName}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.applicantName ? 'border-red-500' : 'border-gray-300'
+                    errors.applicantName ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="Enter your full name"
                 />
@@ -309,7 +309,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -318,7 +318,7 @@ const ApplicationPage = () => {
                   value={formData.applicantEmail}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.applicantEmail ? 'border-red-500' : 'border-gray-300'
+                    errors.applicantEmail ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="Enter your email"
                 />
@@ -328,7 +328,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -337,7 +337,7 @@ const ApplicationPage = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.phone ? 'border-red-500' : 'border-gray-300'
+                    errors.phone ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="Enter your phone number"
                 />
@@ -347,7 +347,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   LinkedIn Profile
                 </label>
                 <input
@@ -356,7 +356,7 @@ const ApplicationPage = () => {
                   value={formData.linkedin}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.linkedin ? 'border-red-500' : 'border-gray-300'
+                    errors.linkedin ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="https://linkedin.com/in/yourprofile"
                 />
@@ -366,7 +366,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   GitHub Profile
                 </label>
                 <input
@@ -375,7 +375,7 @@ const ApplicationPage = () => {
                   value={formData.github}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.github ? 'border-red-500' : 'border-gray-300'
+                    errors.github ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="https://github.com/yourusername"
                 />
@@ -385,7 +385,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Portfolio Website
                 </label>
                 <input
@@ -394,7 +394,7 @@ const ApplicationPage = () => {
                   value={formData.portfolio}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.portfolio ? 'border-red-500' : 'border-gray-300'
+                    errors.portfolio ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="https://yourportfolio.com"
                 />
@@ -407,7 +407,7 @@ const ApplicationPage = () => {
             {/* Professional Information */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Expected Salary (USD) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -416,7 +416,7 @@ const ApplicationPage = () => {
                   value={formData.salaryExpectation}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.salaryExpectation ? 'border-red-500' : 'border-gray-300'
+                    errors.salaryExpectation ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="75000"
                   min="0"
@@ -427,7 +427,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Years of Experience <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -436,7 +436,7 @@ const ApplicationPage = () => {
                   value={formData.experienceYears}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.experienceYears ? 'border-red-500' : 'border-gray-300'
+                    errors.experienceYears ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="3"
                   min="0"
@@ -448,7 +448,7 @@ const ApplicationPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Notice Period (Days) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -457,7 +457,7 @@ const ApplicationPage = () => {
                   value={formData.noticePeriod}
                   onChange={handleInputChange}
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.noticePeriod ? 'border-red-500' : 'border-gray-300'
+                    errors.noticePeriod ? 'border-red-500' : 'border-neutral-300'
                   }`}
                   placeholder="30"
                   min="0"
@@ -470,7 +470,7 @@ const ApplicationPage = () => {
 
             {/* Resume Upload */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Resume (PDF only) <span className="text-red-500">*</span>
               </label>
               <input
@@ -479,13 +479,13 @@ const ApplicationPage = () => {
                 onChange={handleFileChange}
                 accept=".pdf"
                 className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.resume ? 'border-red-500' : 'border-gray-300'
+                  errors.resume ? 'border-red-500' : 'border-neutral-300'
                 }`}
               />
               {errors.resume && (
                 <p className="mt-1 text-sm text-red-600">{errors.resume}</p>
               )}
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-neutral-500">
                 Maximum file size: 5MB. Only PDF files are accepted.
               </p>
             </div>
@@ -495,7 +495,7 @@ const ApplicationPage = () => {
               <button
                 type="button"
                 onClick={() => navigate('/')}
-                className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                className="px-6 py-2 border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-50"
               >
                 Cancel
               </button>

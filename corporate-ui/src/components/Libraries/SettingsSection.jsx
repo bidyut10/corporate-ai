@@ -127,7 +127,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-black">Settings</h2>
-          <p className="text-gray-600">Manage your account and preferences</p>
+          <p className="text-neutral-600">Manage your account and preferences</p>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
       )}
 
       {/* Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-neutral-200">
         <nav className="flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -157,7 +157,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                 className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
                     ? "border-purple-400 text-purple-400"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    : "border-transparent text-neutral-500 hover:text-neutral-700"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -174,7 +174,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
           <div className="max-w-2xl">
             <form onSubmit={handleProfileSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Full Name
                 </label>
                 <input
@@ -182,7 +182,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                   value={profileForm.name}
                   onChange={(e) => handleProfileChange("name", e.target.value)}
                   className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                    errors.name ? "border-red-400" : "border-gray-200"
+                    errors.name ? "border-red-400" : "border-neutral-200"
                   }`}
                   placeholder="Enter your full name"
                 />
@@ -190,7 +190,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Email Address
                 </label>
                 <input
@@ -198,7 +198,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                   value={profileForm.email}
                   onChange={(e) => handleProfileChange("email", e.target.value)}
                   className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                    errors.email ? "border-red-400" : "border-gray-200"
+                    errors.email ? "border-red-400" : "border-neutral-200"
                   }`}
                   placeholder="Enter your email address"
                 />
@@ -229,7 +229,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
           <div className="max-w-2xl">
             <form onSubmit={handlePasswordSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Current Password
                 </label>
                 <div className="relative">
@@ -238,14 +238,14 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                     value={passwordForm.oldPassword}
                     onChange={(e) => handlePasswordChange("oldPassword", e.target.value)}
                     className={`w-full px-4 py-3 pr-12 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                      errors.oldPassword ? "border-red-400" : "border-gray-200"
+                      errors.oldPassword ? "border-red-400" : "border-neutral-200"
                     }`}
                     placeholder="Enter current password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -254,7 +254,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   New Password
                 </label>
                 <div className="relative">
@@ -263,14 +263,14 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                     value={passwordForm.newPassword}
                     onChange={(e) => handlePasswordChange("newPassword", e.target.value)}
                     className={`w-full px-4 py-3 pr-12 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                      errors.newPassword ? "border-red-400" : "border-gray-200"
+                      errors.newPassword ? "border-red-400" : "border-neutral-200"
                     }`}
                     placeholder="Enter new password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
                   >
                     {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -279,7 +279,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Confirm New Password
                 </label>
                 <div className="relative">
@@ -288,14 +288,14 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                     value={passwordForm.confirmPassword}
                     onChange={(e) => handlePasswordChange("confirmPassword", e.target.value)}
                     className={`w-full px-4 py-3 pr-12 border rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all ${
-                      errors.confirmPassword ? "border-red-400" : "border-gray-200"
+                      errors.confirmPassword ? "border-red-400" : "border-neutral-200"
                     }`}
                     placeholder="Confirm new password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
                   >
                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -325,13 +325,13 @@ const SettingsSection = ({ user, onUserUpdate }) => {
 
         {activeTab === "notifications" && (
           <div className="max-w-2xl space-y-6">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100 p-6">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-neutral-100 p-6">
               <h3 className="text-lg font-semibold text-black mb-4">Email Notifications</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-black">Job Updates</p>
-                    <p className="text-sm text-gray-600">Receive notifications about job status changes</p>
+                    <p className="text-sm text-neutral-600">Receive notifications about job status changes</p>
                   </div>
                   <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-purple-400">
                     <span className="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"></span>
@@ -340,7 +340,7 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-black">Application Alerts</p>
-                    <p className="text-sm text-gray-600">Get notified when someone applies to your jobs</p>
+                    <p className="text-sm text-neutral-600">Get notified when someone applies to your jobs</p>
                   </div>
                   <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-purple-400">
                     <span className="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"></span>
@@ -349,9 +349,9 @@ const SettingsSection = ({ user, onUserUpdate }) => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-black">System Updates</p>
-                    <p className="text-sm text-gray-600">Receive important system and security updates</p>
+                    <p className="text-sm text-neutral-600">Receive important system and security updates</p>
                   </div>
-                  <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200">
+                  <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-neutral-200">
                     <span className="inline-block h-4 w-4 transform rounded-full bg-white transition"></span>
                   </button>
                 </div>

@@ -53,12 +53,12 @@ const MiniStatsCard = ({ title, value, icon: Icon, color, subtitle, trend }) => 
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4 hover:shadow-md transition-all duration-200">
+    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4 hover:shadow-md transition-all duration-200">
       <div className="flex items-center justify-between">
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium text-gray-600 mb-1 truncate">{title}</p>
-          <p className="text-lg sm:text-xl font-bold text-gray-900 truncate">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1 truncate">{subtitle}</p>}
+          <p className="text-xs font-medium text-neutral-600 mb-1 truncate">{title}</p>
+          <p className="text-lg sm:text-xl font-bold text-neutral-900 truncate">{value}</p>
+          {subtitle && <p className="text-xs text-neutral-500 mt-1 truncate">{subtitle}</p>}
         </div>
         <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${gradientMap[color]} flex items-center justify-center flex-shrink-0 ml-2`}>
           <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -84,9 +84,9 @@ const MiniChart = ({ data, type = "pie", title, color = "purple" }) => {
 
   if (type === "pie") {
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4">
+      <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4">
         <div className="flex items-center justify-between mb-2 sm:mb-3">
-          <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{title}</h4>
+          <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">{title}</h4>
           <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br ${gradientMap[color]} flex items-center justify-center flex-shrink-0 ml-2`}>
             <PieChartIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
           </div>
@@ -118,9 +118,9 @@ const MiniChart = ({ data, type = "pie", title, color = "purple" }) => {
 
   if (type === "area") {
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4">
+      <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4">
         <div className="flex items-center justify-between mb-2 sm:mb-3">
-          <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{title}</h4>
+          <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">{title}</h4>
           <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br ${gradientMap[color]} flex items-center justify-center flex-shrink-0 ml-2`}>
             <BarChart3 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
           </div>
@@ -164,9 +164,9 @@ const CompactTable = ({ title, data, columns, icon: Icon, color = "purple", maxR
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4">
+    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4">
       <div className="flex items-center justify-between mb-2 sm:mb-3">
-        <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{title}</h4>
+        <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">{title}</h4>
         <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br ${gradientMap[color]} flex items-center justify-center flex-shrink-0 ml-2`}>
           <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
         </div>
@@ -174,20 +174,20 @@ const CompactTable = ({ title, data, columns, icon: Icon, color = "purple", maxR
       {data && data.length > 0 ? (
         <div className="space-y-1 sm:space-y-2">
           {data.slice(0, maxRows).map((item, index) => (
-            <div key={index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <div key={index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors">
               <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 flex-1">
                 <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br ${gradientMap[color]} flex items-center justify-center text-white text-xs font-semibold flex-shrink-0`}>
                   {index + 1}
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-gray-900 truncate">{item.name}</span>
+                <span className="text-xs sm:text-sm font-medium text-neutral-900 truncate">{item.name}</span>
               </div>
-              <span className="text-xs text-gray-600 font-medium flex-shrink-0 ml-2">{item.value}</span>
+              <span className="text-xs text-neutral-600 font-medium flex-shrink-0 ml-2">{item.value}</span>
             </div>
           ))}
         </div>
       ) : (
         <div className="text-center py-3 sm:py-4">
-          <p className="text-xs text-gray-500">No data available</p>
+          <p className="text-xs text-neutral-500">No data available</p>
         </div>
       )}
     </div>
@@ -197,9 +197,9 @@ const CompactTable = ({ title, data, columns, icon: Icon, color = "purple", maxR
 // Compact Applications List
 const CompactApplicationsList = ({ applications, title, maxItems = 3 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4">
+    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4">
       <div className="flex items-center justify-between mb-2 sm:mb-3">
-        <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{title}</h4>
+        <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">{title}</h4>
         <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 ml-2">
           <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
         </div>
@@ -207,14 +207,14 @@ const CompactApplicationsList = ({ applications, title, maxItems = 3 }) => {
       {applications && applications.length > 0 ? (
         <div className="space-y-1 sm:space-y-2">
           {applications.slice(0, maxItems).map((app, index) => (
-            <div key={app._id || index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <div key={app._id || index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors">
               <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 flex-1">
                 <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
                   {app.applicantName?.charAt(0).toUpperCase() || "N"}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-medium text-gray-900 truncate">{app.applicantName}</p>
-                  <p className="text-xs text-gray-500 truncate">{app.jobId?.title}</p>
+                  <p className="text-xs font-medium text-neutral-900 truncate">{app.applicantName}</p>
+                  <p className="text-xs text-neutral-500 truncate">{app.jobId?.title}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-1 flex-shrink-0 ml-2">
@@ -231,7 +231,7 @@ const CompactApplicationsList = ({ applications, title, maxItems = 3 }) => {
                   app.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
                   app.status === 'shortlisted' ? 'bg-green-100 text-green-700' :
                   app.status === 'rejected' ? 'bg-red-100 text-red-700' :
-                  'bg-gray-100 text-gray-700'
+                  'bg-neutral-100 text-neutral-700'
                 }`}>
                   {app.status}
                 </span>
@@ -241,7 +241,7 @@ const CompactApplicationsList = ({ applications, title, maxItems = 3 }) => {
         </div>
       ) : (
         <div className="text-center py-3 sm:py-4">
-          <p className="text-xs text-gray-500">No applications yet</p>
+          <p className="text-xs text-neutral-500">No applications yet</p>
         </div>
       )}
     </div>
@@ -251,9 +251,9 @@ const CompactApplicationsList = ({ applications, title, maxItems = 3 }) => {
 // Compact Jobs List
 const CompactJobsList = ({ jobs, title, maxItems = 3 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-2 sm:p-3 lg:p-4">
+    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 p-2 sm:p-3 lg:p-4">
       <div className="flex items-center justify-between mb-2 sm:mb-3">
-        <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{title}</h4>
+        <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">{title}</h4>
         <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0 ml-2">
           <Briefcase className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
         </div>
@@ -261,14 +261,14 @@ const CompactJobsList = ({ jobs, title, maxItems = 3 }) => {
       {jobs && jobs.length > 0 ? (
         <div className="space-y-1 sm:space-y-2">
           {jobs.slice(0, maxItems).map((job, index) => (
-            <div key={job._id || index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <div key={job._id || index} className="flex items-center justify-between py-1.5 sm:py-2 px-2 sm:px-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors">
               <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 flex-1">
                 <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-blue-500 to-purple-500 rounded-md flex items-center justify-center flex-shrink-0">
                   <Briefcase className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-medium text-gray-900 truncate">{job.title}</p>
-                  <p className="text-xs text-gray-500 truncate">{job.location} • {job.jobType}</p>
+                  <p className="text-xs font-medium text-neutral-900 truncate">{job.title}</p>
+                  <p className="text-xs text-neutral-500 truncate">{job.location} • {job.jobType}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-1 flex-shrink-0 ml-2">
@@ -280,7 +280,7 @@ const CompactJobsList = ({ jobs, title, maxItems = 3 }) => {
                   {job.status}
                 </span>
                 {/* {job.applicationsCount && (
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-neutral-500">
                     {job.applicationsCount}
                   </span>
                 )} */}
@@ -290,7 +290,7 @@ const CompactJobsList = ({ jobs, title, maxItems = 3 }) => {
         </div>
       ) : (
         <div className="text-center py-3 sm:py-4">
-          <p className="text-xs text-gray-500">No jobs yet</p>
+          <p className="text-xs text-neutral-500">No jobs yet</p>
         </div>
       )}
     </div>

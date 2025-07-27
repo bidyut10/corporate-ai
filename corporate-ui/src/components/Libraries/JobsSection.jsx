@@ -53,13 +53,13 @@ const JobsSection = ({
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-900 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-900 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search jobs by title, description, or skills..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-500 rounded-xl focus:border-gray-600"
+                className="w-full pl-12 pr-4 py-3 border border-neutral-500 rounded-xl focus:border-neutral-600"
               />
             </div>
           </div>
@@ -67,7 +67,7 @@ const JobsSection = ({
             <select
               value={filters.status}
               onChange={(e) => setFilters(f => ({ ...f, status: e.target.value }))}
-              className="px-4 py-3 border border-gray-500 rounded-xl focus:ring-1 focus:ring-gray-700 focus:border-transparent transition-all"
+              className="px-4 py-3 border border-neutral-500 rounded-xl focus:ring-1 focus:ring-neutral-700 focus:border-transparent transition-all"
             >
               <option value="">All Status</option>
               <option value="active">Active</option>
@@ -77,7 +77,7 @@ const JobsSection = ({
             <select
               value={filters.jobType}
               onChange={(e) => setFilters(f => ({ ...f, jobType: e.target.value }))}
-              className="px-4 py-3 border border-gray-500 rounded-xl focus:ring-1 focus:ring-gray-700 focus:border-transparent transition-all"
+              className="px-4 py-3 border border-neutral-500 rounded-xl focus:ring-1 focus:ring-neutral-700 focus:border-transparent transition-all"
             >
               <option value="">All Types</option>
               <option value="full-time">Full Time</option>

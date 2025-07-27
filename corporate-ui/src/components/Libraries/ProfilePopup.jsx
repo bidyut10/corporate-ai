@@ -31,13 +31,13 @@ const ProfilePopup = ({ isOpen, onClose, name, email, role }) => {
     <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm">
       <div className="fixed" onClick={onClose} />
       <div className="fixed top-16 right-4 z-60 w-80 max-w-[calc(100vw-2rem)]">
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white border border-neutral-200 rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="px-5 py-4 border-b border-gray-200 flex justify-between items-center">
+          <div className="px-5 py-4 border-b border-neutral-200 flex justify-between items-center">
             <span className="text-base text-black font-normal">Profile</span>
             <button
               onClick={onClose}
-              className="p-1 rounded-full hover:bg-gray-100"
+              className="p-1 rounded-full hover:bg-neutral-100"
             >
               <X className="w-4 h-4 text-black" />
             </button>
@@ -57,7 +57,7 @@ const ProfilePopup = ({ isOpen, onClose, name, email, role }) => {
               <p className="text-base text-black font-normal truncate">
                 {name}
               </p>
-              <button className="p-1 hover:bg-gray-100 rounded">
+              <button className="p-1 hover:bg-neutral-100 rounded">
                 <UserRoundPen className="text-black" size={15} />
               </button>
             </div>
@@ -75,7 +75,7 @@ const ProfilePopup = ({ isOpen, onClose, name, email, role }) => {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-200" />
+            <div className="border-t border-neutral-200" />
 
             {/* Status */}
             <div className="flex items-center justify-between text-sm text-black">

@@ -49,14 +49,14 @@ const AuthPage = () => {
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="bg-white py-6 px-5 shadow-xl rounded-2xl sm:px-8 border border-gray-100 mx-4 md:mx-0">
+        <div className="bg-white py-6 px-5 shadow-xl rounded-2xl sm:px-8 border border-neutral-100 mx-4 md:mx-0">
           <div className="sm:mx-auto sm:w-full sm:max-w-md mb-4">
             <Link to="/" className="flex items-center justify-center gap-2">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#000000] rounded-xl flex items-center justify-center shadow-md">
                 <Logo />
               </div>
             </Link>
-            <h2 className="mt-4 text-center text-lg font-normal text-gray-950">
+            <h2 className="mt-4 text-center text-lg font-normal text-neutral-950">
               {isLogin
                 ? "Welcome Back to Corporate AI"
                 : "Join Corporate AI Today!"}
@@ -77,7 +77,7 @@ const AuthPage = () => {
         </div>
       </div>
 
-      <div className="mt-4 text-center text-xs text-gray-500">
+      <div className="mt-4 text-center text-xs text-neutral-500">
         <p>© 2025 Corporate AI. All rights reserved.</p>
       </div>
 

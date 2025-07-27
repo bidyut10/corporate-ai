@@ -57,7 +57,7 @@ const SkillsInput = ({ value = [], onChange, placeholder = "Add skills...", clas
     <div className={`relative ${className}`}>
       <div
         className={`min-h-[48px] px-4 py-2 border rounded-xl focus-within:ring-2 focus-within:ring-purple-400 focus-within:border-transparent transition-all ${
-          isFocused ? 'border-purple-400' : 'border-gray-200'
+          isFocused ? 'border-purple-400' : 'border-neutral-200'
         }`}
         onClick={() => inputRef.current?.focus()}
       >
@@ -99,21 +99,21 @@ const SkillsInput = ({ value = [], onChange, placeholder = "Add skills...", clas
       </div>
       
       {/* Helper Text */}
-      <div className="mt-2 text-xs text-gray-500">
+      <div className="mt-2 text-xs text-neutral-500">
         <p>Press Enter, comma, or paste to add skills. Use Backspace to remove the last skill.</p>
       </div>
       
       {/* Quick Add Buttons */}
       {value.length === 0 && (
         <div className="mt-3">
-          <p className="text-xs text-gray-600 mb-2">Popular skills:</p>
+          <p className="text-xs text-neutral-600 mb-2">Popular skills:</p>
           <div className="flex flex-wrap gap-2">
             {['React', 'JavaScript', 'Python', 'Node.js', 'MongoDB', 'AWS', 'Docker', 'Git'].map((skill) => (
               <button
                 key={skill}
                 type="button"
                 onClick={() => handleAddSkill(skill)}
-                className="inline-flex items-center gap-1 px-3 py-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1 text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-full transition-colors"
               >
                 <Plus className="w-3 h-3" />
                 {skill}

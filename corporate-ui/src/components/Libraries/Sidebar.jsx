@@ -40,7 +40,7 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
     <>
       {/* Mobile Menu Button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-200"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-neutral-200"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         {isMobileMenuOpen ? (
@@ -96,8 +96,8 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
                     w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200
                     ${
                       isActive
-                        ? "bg-gray-400/10 text-gray-100 shadow-sm"
-                        : "text-gray-400 hover:bg-gray-50 hover:text-black"
+                        ? "bg-neutral-400/10 text-neutral-100 shadow-sm"
+                        : "text-neutral-400 hover:bg-neutral-50 hover:text-black"
                     }
                   `}
                 >
@@ -109,7 +109,7 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
           </nav>
 
           {/* Logout Button - Fixed at bottom */}
-          <div className="p-4 border-t border-gray-700">
+          <div className="p-4 border-t border-neutral-700">
             <button
               onClick={handleLogout}
               className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 text-red-400 hover:bg-red-500/10 hover:text-red-300"
